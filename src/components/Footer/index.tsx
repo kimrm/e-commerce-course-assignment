@@ -1,3 +1,3 @@
 export default function Footer() {
-  return <div>Footer</div>;
+  return <footer>Shop-A-Lot {new Date().getFullYear()}</footer>;
 }
