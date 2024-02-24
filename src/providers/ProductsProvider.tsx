@@ -14,6 +14,10 @@ interface ProductsProviderProps {
 export default function ProductsProvider(props: ProductsProviderProps) {
   const { children } = props;
   const [products, setProducts] = useState<Product[]>([]);
+  const contextValue: ProductsContextValue = useMemo(
+    () => ({ products, setProducts }),
+    [products]
+  );
 
   useEffect(() => {
     fetch("https://v2.api.noroff.dev/online-shop")
@@ -22,11 +26,6 @@ export default function ProductsProvider(props: ProductsProviderProps) {
         setProducts(data.data);
       });
   }, []);
-
-  const contextValue: ProductsContextValue = useMemo(
-    () => ({ products, setProducts }),
-    [products]
-  );
 
   return (
     <ProductsContext.Provider value={contextValue}>

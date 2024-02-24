@@ -32,7 +32,7 @@ export default function ShoppingBagProvider(props: ShoppingBagProviderProps) {
     const newShoppingBag = {
       ...shoppingBag,
       items: shoppingBag.items.concat(item),
-      total: shoppingBag.total + item.price,
+      total: parseFloat((shoppingBag.total + item.price).toFixed(2)),
     };
     setShoppingBag(newShoppingBag);
     localStorage.setItem("shoppingBag", JSON.stringify(newShoppingBag));
