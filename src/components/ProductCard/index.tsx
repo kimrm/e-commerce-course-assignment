@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Product } from "../../types/ProductTypes";
+import { Card } from "./ProductCard.styles";
 
 interface ProductCardProps {
   product: Product;
@@ -10,13 +11,14 @@ export default function ProductCard(props: ProductCardProps) {
   const { product, handleAddToCart } = props;
 
   return (
-    <div>
+    <Card>
       <Link to={`/product/${product.id}`}>
         <h2>{product.title}</h2>
       </Link>
+      <img src={product.image.url} alt={product.image.alt} />
       <p>{product.price}</p>
       <p>{product.description}</p>
-      <img src={product.image.url} alt={product.image.alt} />
+      <input type="number" placeholder="1" value={1} />
       <button
         onClick={() => {
           handleAddToCart(product);
@@ -24,6 +26,6 @@ export default function ProductCard(props: ProductCardProps) {
       >
         Add to cart
       </button>
-    </div>
+    </Card>
   );
 }
