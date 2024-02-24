@@ -1,59 +1,42 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-
-interface ProductsData {
-  data: Product[];
-}
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  discountedPrice: number;
-  description: string;
-  rating: number;
-  tags: string[];
-  image: ProductImage;
-  reviews: ProductReview[];
-}
-
-interface ProductImage {
-  url: string;
-  alt: string;
-}
-
-interface ProductReview {
-  id: string;
-  username: string;
-  rating: number;
-  description: string;
-}
-
-async function fetchData() {
-  const data = await fetch("https://v2.api.noroff.dev/online-shop");
-  const response = await data.json();
-  return response;
-}
+import { useContext } from "react";
+import ProductCard from "../ProductCard";
+import ProductsContext from "../../contexts/ProductsContext";
+import ShoppingBagContext from "../../contexts/ShoppingBagContext";
+import { Product } from "../../types/ProductTypes";
+import {
+  ShoppingBagContextValue,
+  ShoppingBagItem,
+} from "../../types/ShoppingBagTypes";
 
 export default function ProductsIndex() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const contextValue = useContext(ProductsContext);
+  const { addItemToShoppingBag } =
+    useContext<ShoppingBagContextValue>(ShoppingBagContext);
 
-  useEffect(() => {
-    fetchData().then((data: ProductsData) => {
-      setProducts(data.data || []);
-    });
-  }, []);
+  if (contextValue === null) {
+    return <div>Loading...</div>;
+  }
+
+  const { products } = contextValue;
+
+  function handleAddToCart(product: Product) {
+    const item: ShoppingBagItem = {
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      quantity: 1,
+    };
+    addItemToShoppingBag(item);
+  }
+
   return (
     <>
       {products.map((product: Product) => (
-        <div key={product.id}>
-          <Link to={`/product/${product.id}`}>
-            <h2>{product.title}</h2>
-          </Link>
-          <p>{product.price}</p>
-          <p>{product.description}</p>
-          <img src={product.image.url} alt={product.image.alt} />
-        </div>
+        <ProductCard
+          key={product.id}
+          product={product}
+          handleAddToCart={handleAddToCart}
+        />
       ))}
     </>
   );

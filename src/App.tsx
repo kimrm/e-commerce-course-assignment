@@ -9,14 +9,12 @@ function App() {
   return (
     <BrowserRouter>
       <Layout>
-        <main>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/product/:productId" element={<ProductPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="*" element={<h1>Page does not exist</h1>} />
-          </Routes>
-        </main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product/:productId" element={<ProductPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<h1>Page does not exist</h1>} />
+        </Routes>
       </Layout>
     </BrowserRouter>
   );
