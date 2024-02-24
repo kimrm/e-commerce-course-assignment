@@ -14,12 +14,19 @@ export default function Search() {
 
   useEffect(() => {
     if (searchText.length > 2) {
-      const results = products.filter((product) =>
-        product.title.toLowerCase().includes(searchText.toLowerCase())
-      );
+      const results = products.filter((product) => {
+        const includesTitle = product.title
+          .toLowerCase()
+          .includes(searchText.toLowerCase());
+        const includesTag = product.tags.some((tag) =>
+          tag.toLowerCase().includes(searchText.toLowerCase())
+        );
+
+        return includesTitle || includesTag;
+      });
       setSearchResults(results);
     }
-  }, [searchText]);
+  }, [searchText, products]);
 
   return (
     <div>
