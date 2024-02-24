@@ -7,6 +7,7 @@ import {
   ShoppingBagContextValue,
   ShoppingBagItem,
 } from "../../types/ShoppingBagTypes";
+import { ProductsList } from "./ProductsIndex.styles";
 
 export default function ProductsIndex() {
   const contextValue = useContext(ProductsContext);
@@ -30,7 +31,7 @@ export default function ProductsIndex() {
   }
 
   return (
-    <>
+    <ProductsList>
       {products.map((product: Product) => (
         <ProductCard
           key={product.id}
@@ -38,6 +39,6 @@ export default function ProductsIndex() {
           handleAddToCart={handleAddToCart}
         />
       ))}
-    </>
+    </ProductsList>
   );
 }
