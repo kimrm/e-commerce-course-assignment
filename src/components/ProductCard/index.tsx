@@ -13,6 +13,7 @@ interface ProductCardProps {
 export default function ProductCard(props: ProductCardProps) {
   const { product, handleAddToCart } = props;
   const [isLightTheme, setIsLightTheme] = useState(true);
+  const [quantity, setQuantity] = useState("1");
   const lightTheme = {
     backgroundColor: "#FFF", // Light background color
     textColor: "#333", // Light text color
@@ -38,7 +39,12 @@ export default function ProductCard(props: ProductCardProps) {
         <img src={product.image.url} alt={product.image.alt} />
         <p>{product.price}</p>
         <p>{product.description}</p>
-        <input type="number" placeholder="1" value={1} />
+        <input
+          type="number"
+          placeholder="1"
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+        />
         <button
           onClick={() => {
             handleAddToCart(product);

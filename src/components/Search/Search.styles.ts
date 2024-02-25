@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 const SearchContainer = styled.div`
+  position: relative;
   overflow: visible;
 `;
 
 const SearchResultsContainer = styled.div`
-  position: relative;
   overflow: visible;
 `;
 

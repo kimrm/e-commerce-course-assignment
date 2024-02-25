@@ -50,40 +50,44 @@ export default function Search() {
   }, [searchResults, backDropControls, searchContainerControls]);
 
   return (
-    <SearchContainer>
+    <>
       <BackDrop
         as={motion.div}
         initial={{ opacity: 0, scale: 0 }}
         animate={backDropControls}
         transition={{ duration: 0.1 }}
+        onClick={() => setSearchText("")}
       />
-      <input
-        type="text"
-        placeholder="Search..."
-        onChange={(e) => setSearchText(e.target.value)}
-      />
-      <button>Search</button>
+      <SearchContainer>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <button>Search</button>
 
-      {searchResults.length > 0 && (
-        <SearchResultsContainer
-          as={motion.div}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={searchContainerControls}
-          transition={{ duration: 0.3 }}
-        >
-          <SearchResult>
-            <p>{searchResults.length} results found</p>
-            <ul>
-              {searchResults.map((product) => (
-                <li key={product.id}>
-                  <h3>{product.title}</h3>
-                  <p>{product.price}</p>
-                </li>
-              ))}
-            </ul>
-          </SearchResult>
-        </SearchResultsContainer>
-      )}
-    </SearchContainer>
+        {searchResults.length > 0 && (
+          <SearchResultsContainer
+            as={motion.div}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={searchContainerControls}
+            transition={{ duration: 0.3 }}
+          >
+            <SearchResult>
+              <p>{searchResults.length} results found</p>
+              <ul>
+                {searchResults.map((product) => (
+                  <li key={product.id}>
+                    <h3>{product.title}</h3>
+                    <p>{product.price}</p>
+                  </li>
+                ))}
+              </ul>
+            </SearchResult>
+          </SearchResultsContainer>
+        )}
+      </SearchContainer>
+    </>
   );
 }
