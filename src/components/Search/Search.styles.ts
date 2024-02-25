@@ -3,6 +3,12 @@ import styled from "styled-components";
 const SearchContainer = styled.div`
   position: relative;
   overflow: visible;
+  input {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    width: 100%;
+  }
 `;
 
 const SearchResultsContainer = styled.div`

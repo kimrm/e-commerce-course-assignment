@@ -65,7 +65,6 @@ export default function Search() {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <button>Search</button>
 
         {searchResults.length > 0 && (
           <SearchResultsContainer
