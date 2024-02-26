@@ -2,17 +2,17 @@ import { useContext } from "react";
 import ProductCard from "../ProductCard";
 import ProductsContext from "../../contexts/ProductsContext";
 import ShoppingBagContext from "../../contexts/ShoppingBagContext";
-import { Product } from "../../types/ProductTypes";
+import { IProduct } from "../../types/ProductTypes";
 import {
-  ShoppingBagContextValue,
-  ShoppingBagItem,
+  IShoppingBagContextValue,
+  IShoppingBagItem,
 } from "../../types/ShoppingBagTypes";
 import { ProductsList } from "./ProductsIndex.styles";
 
 export default function ProductsIndex() {
   const contextValue = useContext(ProductsContext);
   const { addItemToShoppingBag } =
-    useContext<ShoppingBagContextValue>(ShoppingBagContext);
+    useContext<IShoppingBagContextValue>(ShoppingBagContext);
 
   if (contextValue === null) {
     return <div>Loading...</div>;
@@ -20,8 +20,8 @@ export default function ProductsIndex() {
 
   const { products } = contextValue;
 
-  function handleAddToCart(product: Product, quantity: number = 1) {
-    const item: ShoppingBagItem = {
+  function handleAddToCart(product: IProduct, quantity: number = 1) {
+    const item: IShoppingBagItem = {
       id: product.id,
       name: product.title,
       price: product.price,
@@ -32,7 +32,7 @@ export default function ProductsIndex() {
 
   return (
     <ProductsList>
-      {products.map((product: Product) => (
+      {products.map((product: IProduct) => (
         <ProductCard
           key={product.id}
           product={product}

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import usePageTitle from "../../hooks/usePageTitle";
-import { Product } from "../../types/ProductTypes";
+import { IProduct } from "../../types/ProductTypes";
 
 function useImage(imageUrl: string) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -23,7 +23,7 @@ function useImage(imageUrl: string) {
 
 export default function ProductDetail() {
   const { productId } = useParams<string>();
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<IProduct | null>(null);
   const { isLoaded, isError } = useImage(product?.image.url ?? "");
   usePageTitle(product?.title + " | Shop-a-lot");
 
@@ -48,7 +48,7 @@ export default function ProductDetail() {
   );
 }
 
-async function fetchData(id: string): Promise<Product> {
+async function fetchData(id: string): Promise<IProduct> {
   const data = await fetch(`https://v2.api.noroff.dev/online-shop/${id}`);
   const response = await data.json();
   return response.data;

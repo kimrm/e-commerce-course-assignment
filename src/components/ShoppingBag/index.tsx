@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import ShoppingBagContext from "../../contexts/ShoppingBagContext";
+import { IShoppingBagContextValue } from "../../types/ShoppingBagTypes";
 import { motion, useAnimation } from "framer-motion";
 import {
   ShoppingBagButton,
@@ -10,7 +11,7 @@ import ShoppingBagItem from "./ShoppingBagItem";
 
 export default function ShoppingBag() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const contextValue = useContext(ShoppingBagContext);
+  const contextValue = useContext<IShoppingBagContextValue>(ShoppingBagContext);
   const shoppingBag = contextValue?.shoppingBag;
   const controls = useAnimation();
 
@@ -48,14 +49,17 @@ export default function ShoppingBag() {
           }, 0)}
         </span>
       </ShoppingBagButton>
-      <ShoppingBagPopup isVisible={isPopupVisible}>
-        <button>Go to Checkout</button>
-        <h3>Your Cart</h3>
-        {shoppingBag?.items.map((item) => (
-          <ShoppingBagItem key={item.id} item={item} />
-        ))}
-        <div className="total">Total: 1999.99</div>
-      </ShoppingBagPopup>
+
+      {isPopupVisible && (
+        <ShoppingBagPopup>
+          <button>Go to Checkout</button>
+          <h3>Your Cart</h3>
+          {shoppingBag?.items.map((item) => (
+            <ShoppingBagItem key={item.id} item={item} />
+          ))}
+          <div className="total">Total: 1999.99</div>
+        </ShoppingBagPopup>
+      )}
     </ShoppingBagContainer>
   );
 }

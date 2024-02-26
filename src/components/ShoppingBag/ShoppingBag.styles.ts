@@ -1,9 +1,5 @@
 import { styled } from "styled-components";
 
-interface ShoppingBagPopupProps {
-  isVisible: boolean;
-}
-
 export const ShoppingBagContainer = styled.div`
   position: relative;
   scroll: auto;
@@ -12,8 +8,7 @@ export const ShoppingBagContainer = styled.div`
   }
 `;
 
-export const ShoppingBagPopup = styled.div<ShoppingBagPopupProps>`
-  display: ${(props) => (props.isVisible ? "block" : "none")};
+export const ShoppingBagPopup = styled.div`
   overflow: auto;
   position: absolute;
   top: 100%;
@@ -23,10 +18,8 @@ export const ShoppingBagPopup = styled.div<ShoppingBagPopupProps>`
   border-radius: 1rem;
   padding: 2rem;
   width: 20rem;
-  max-height: calc(
-    100vh - 8rem
-  ); /* Subtract padding from the viewport height */
-  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
   button {
     display: block;
     margin-bottom: 1rem;

@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
-import { Product } from "../../types/ProductTypes";
+import { IProduct } from "../../types/ProductTypes";
 import { Card, CardLink } from "./ProductCard.styles";
 import AddToCart from "../AddToCart";
 
-interface ProductCardProps {
-  product: Product;
-  handleAddToCart: (product: Product, quantity: number) => void;
+interface IProductCardProps {
+  product: IProduct;
+  handleAddToCart: (product: IProduct, quantity: number) => void;
 }
 
-export default function ProductCard(props: ProductCardProps) {
+export default function ProductCard(props: IProductCardProps) {
   const { product, handleAddToCart } = props;
 
   const handleItemAdded = (quantity: number) => {

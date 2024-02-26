@@ -1,15 +1,15 @@
-export interface ShoppingBagItem {
+export interface IShoppingBagItem {
   id: string;
   name: string;
   price: number;
   quantity: number;
 }
-export interface ShoppingBag {
-  items: ShoppingBagItem[];
+export interface IShoppingBag {
+  items: IShoppingBagItem[];
   total: number;
 }
 
-export interface ShoppingBagContextValue {
-  shoppingBag: ShoppingBag;
-  addItemToShoppingBag: (item: ShoppingBagItem) => void;
+export interface IShoppingBagContextValue {
+  shoppingBag: IShoppingBag;
+  addItemToShoppingBag: (item: IShoppingBagItem) => void;
 }

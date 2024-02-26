@@ -1,4 +1,4 @@
-export interface Product {
+export interface IProduct {
   id: string;
   title: string;
   price: number;
@@ -6,16 +6,16 @@ export interface Product {
   description: string;
   rating: number;
   tags: string[];
-  image: ProductImage;
-  reviews: ProductReview[];
+  image: IProductImage;
+  reviews: IProductReview[];
 }
 
-interface ProductImage {
+interface IProductImage {
   url: string;
   alt: string;
 }
 
-interface ProductReview {
+interface IProductReview {
   id: string;
   username: string;
   rating: number;

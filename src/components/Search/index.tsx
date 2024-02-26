@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Product } from "../../types/ProductTypes";
+import { IProduct } from "../../types/ProductTypes";
 import ProductsContext from "../../contexts/ProductsContext";
 import {
   SearchContainer,
@@ -11,8 +11,8 @@ import { motion, useAnimation } from "framer-motion";
 
 export default function Search() {
   const [searchText, setSearchText] = useState("");
-  const [products, setProducts] = useState<Product[]>([]);
-  const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [searchResults, setSearchResults] = useState<IProduct[]>([]);
   const contextValue = useContext(ProductsContext);
   const backDropControls = useAnimation();
   const searchContainerControls = useAnimation();
