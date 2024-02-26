@@ -20,12 +20,12 @@ export default function ProductsIndex() {
 
   const { products } = contextValue;
 
-  function handleAddToCart(product: Product) {
+  function handleAddToCart(product: Product, quantity: number = 1) {
     const item: ShoppingBagItem = {
       id: product.id,
       name: product.title,
       price: product.price,
-      quantity: 1,
+      quantity: quantity,
     };
     addItemToShoppingBag(item);
   }

@@ -7,6 +7,9 @@ export const NavigationContainer = styled.nav`
   justify-content: center;
   align-items: center;
   color: white;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const NavigationLink = styled(NavLink)`

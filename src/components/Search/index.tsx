@@ -87,10 +87,13 @@ export default function Search() {
               <p>{searchResults.length} results found</p>
               <ul>
                 {searchResults.map((product) => (
+                  // component
                   <li key={product.id}>
                     <h3>{product.title}</h3>
                     <p>{product.price}</p>
+                    <p>Found in: skin care</p>
                   </li>
+                  // component
                 ))}
               </ul>
             </SearchResult>

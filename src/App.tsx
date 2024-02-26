@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import ContactPage from "./pages/ContactPage";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/product/:productId" element={<ProductPage />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<h1>Page does not exist</h1>} />
         </Routes>

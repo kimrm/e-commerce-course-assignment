@@ -29,10 +29,13 @@ export default function ShoppingBagProvider(props: ShoppingBagProviderProps) {
   }, []);
 
   function addItemToShoppingBag(item: ShoppingBagItem) {
+    console.log("add ", item);
     const newShoppingBag = {
       ...shoppingBag,
       items: shoppingBag.items.concat(item),
-      total: parseFloat((shoppingBag.total + item.price).toFixed(2)),
+      total: parseFloat(
+        (shoppingBag.total + item.price * item.quantity).toFixed(2)
+      ),
     };
     setShoppingBag(newShoppingBag);
     localStorage.setItem("shoppingBag", JSON.stringify(newShoppingBag));
