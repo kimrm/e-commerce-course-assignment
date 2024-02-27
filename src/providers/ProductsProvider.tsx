@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react";
 import ProductsContext from "../contexts/ProductsContext";
-import { Product } from "../types/ProductTypes";
+import { IProduct } from "../types/ProductTypes";
 
 interface ProductsContextValue {
-  products: Product[];
-  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  products: IProduct[];
+  setProducts: React.Dispatch<React.SetStateAction<IProduct[]>>;
 }
 
 interface ProductsProviderProps {
@@ -13,7 +13,7 @@ interface ProductsProviderProps {
 
 export default function ProductsProvider(props: ProductsProviderProps) {
   const { children } = props;
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<IProduct[]>([]);
   const contextValue: ProductsContextValue = useMemo(
     () => ({ products, setProducts }),
     [products]

@@ -1,15 +1,15 @@
 import { createContext } from "react";
 import {
-  ShoppingBag,
-  ShoppingBagContextValue,
+  IShoppingBag,
+  IShoppingBagContextValue,
 } from "../types/ShoppingBagTypes";
 
-const initalShoppingBag: ShoppingBag = {
+const initalShoppingBag: IShoppingBag = {
   items: [],
   total: 0,
 };
 
-const ShoppingBagContext = createContext<ShoppingBagContextValue>({
+const ShoppingBagContext = createContext<IShoppingBagContextValue>({
   shoppingBag: initalShoppingBag,
   addItemToShoppingBag: () => {},
 });

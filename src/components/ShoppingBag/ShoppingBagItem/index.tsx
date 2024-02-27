@@ -14,24 +14,28 @@ interface IShoppingBagItemProps {
 export default function ShoppingBagItem(props: IShoppingBagItemProps) {
   const { item } = props;
   const [quantity, setQuantity] = useState(item.quantity);
+  const [changeFlag, setChangeFlag] = useState(false);
   const { addItemToShoppingBag } =
     useContext<IShoppingBagContextValue>(ShoppingBagContext);
 
   useEffect(() => {
-    if (quantity !== item.quantity) {
+    if (changeFlag && quantity !== item.quantity) {
       const newItem: IShoppingBagItem = {
         ...item,
         quantity: quantity,
       };
       addItemToShoppingBag(newItem);
     }
-  }, [quantity, item, addItemToShoppingBag]);
+  }, [quantity, item, addItemToShoppingBag, changeFlag]);
 
   return (
     <ShoppingBagItemContainer>
       <input
         type="number"
-        value={quantity}
+        value={item.quantity}
+        onKeyDown={() => {
+          setChangeFlag((prev) => !prev);
+        }}
         onChange={(e) =>
           setQuantity(
             isNaN(parseInt(e.target.value)) ? 1 : parseInt(e.target.value)

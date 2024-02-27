@@ -1,9 +1,9 @@
 import { createContext } from "react";
-import { Product } from "../types/ProductTypes";
+import { IProduct } from "../types/ProductTypes";
 
 interface ProductsContextValue {
-  products: Product[];
-  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  products: IProduct[];
+  setProducts: React.Dispatch<React.SetStateAction<IProduct[]>>;
 }
 
 const ProductsContext = createContext<ProductsContextValue | null>(null);
