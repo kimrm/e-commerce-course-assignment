@@ -12,4 +12,5 @@ export interface IShoppingBag {
 export interface IShoppingBagContextValue {
   shoppingBag: IShoppingBag;
   addItemToShoppingBag: (item: IShoppingBagItem) => void;
+  updateItemsInShoppingBag: (item: IShoppingBagItem) => void;
 }

@@ -9,6 +9,8 @@ import {
   BackDrop,
 } from "./ShoppingBag.styles";
 import ShoppingBagItem from "./ShoppingBagItem";
+import { Link } from "react-router-dom";
+import { useStore } from "../../store/store";
 
 export default function ShoppingBag() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -16,6 +18,8 @@ export default function ShoppingBag() {
   const shoppingBag = contextValue?.shoppingBag;
   const controls = useAnimation();
   const backDropControls = useAnimation();
+
+  const bagItems = useStore((state) => state.bagItems);
 
   useEffect(() => {
     controls.start({ opacity: 1, scale: [0.5, 1] });
@@ -82,9 +86,11 @@ export default function ShoppingBag() {
 
         {isPopupVisible && (
           <ShoppingBagPopup>
-            <button>Go to Checkout</button>
+            <Link to={"/checkout"} className="link">
+              Go to Checkout
+            </Link>
             <h3>Your Cart</h3>
-            {shoppingBag?.items.map((item) => (
+            {bagItems.map((item) => (
               <ShoppingBagItem key={item.id} item={item} />
             ))}
             <div className="total">Total: 1999.99</div>

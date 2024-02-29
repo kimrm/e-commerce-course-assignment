@@ -20,18 +20,26 @@ export const ShoppingBagPopup = styled.div`
   width: 20rem;
   max-height: calc(100vh - 8rem);
   overflow-y: auto;
-  button {
+  .link {
     display: block;
     margin-bottom: 1rem;
     font-size: 1.3rem;
     font-weight: bold;
     width: 100%;
-    padding: 1rem 0;
+    padding: 1rem;
+    text-decoration: none;
     border: green 2px solid;
     background-color: #444;
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    &:hover {
+      background-color: #555;
+    }
+  }
+  .total {
+    text-align: right;
+    margin-top: 1rem;
   }
   @media (max-width: 600px) {
     left: 0;

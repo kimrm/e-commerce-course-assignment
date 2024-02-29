@@ -12,6 +12,7 @@ const initalShoppingBag: IShoppingBag = {
 const ShoppingBagContext = createContext<IShoppingBagContextValue>({
   shoppingBag: initalShoppingBag,
   addItemToShoppingBag: () => {},
+  updateItemsInShoppingBag: () => {},
 });
 
 export default ShoppingBagContext;

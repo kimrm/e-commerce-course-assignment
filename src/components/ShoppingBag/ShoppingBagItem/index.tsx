@@ -5,43 +5,39 @@ import {
 import { ShoppingBagItemContainer } from "./ShoppingBagItem.styles";
 import ShoppingBagContext from "../../../contexts/ShoppingBagContext";
 
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 
-interface IShoppingBagItemProps {
+interface ShoppingBagItemProps {
   item: IShoppingBagItem;
 }
 
-export default function ShoppingBagItem(props: IShoppingBagItemProps) {
+export default function ShoppingBagItem(props: ShoppingBagItemProps) {
   const { item } = props;
   const [quantity, setQuantity] = useState(item.quantity);
-  const [changeFlag, setChangeFlag] = useState(false);
-  const { addItemToShoppingBag } =
+  const { updateItemsInShoppingBag } =
     useContext<IShoppingBagContextValue>(ShoppingBagContext);
 
-  useEffect(() => {
-    if (changeFlag && quantity !== item.quantity) {
+  function handleQuantityChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const newValue: number = isNaN(parseInt(e.target.value))
+      ? 1
+      : parseInt(e.target.value);
+
+    setQuantity(newValue);
+
+    if (newValue !== item.quantity) {
+      console.log("Updating item in shopping bag");
       const newItem: IShoppingBagItem = {
         ...item,
-        quantity: quantity,
+        quantity: newValue,
       };
-      addItemToShoppingBag(newItem);
+      console.log("New item ", newItem);
+      updateItemsInShoppingBag(newItem);
     }
-  }, [quantity, item, addItemToShoppingBag, changeFlag]);
+  }
 
   return (
     <ShoppingBagItemContainer>
-      <input
-        type="number"
-        value={item.quantity}
-        onKeyDown={() => {
-          setChangeFlag((prev) => !prev);
-        }}
-        onChange={(e) =>
-          setQuantity(
-            isNaN(parseInt(e.target.value)) ? 1 : parseInt(e.target.value)
-          )
-        }
-      />
+      <input type="number" value={quantity} onChange={handleQuantityChange} />
       <span>{item.name}</span>
       <span>{item.price * item.quantity}</span>
     </ShoppingBagItemContainer>
