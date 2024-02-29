@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IShoppingBagItem } from "../../../types/ShoppingBagTypes";
-import { ShoppingBagItemContainer } from "./ShoppingBagItem.styles";
+import { ShoppingBagItemContainer, Row } from "./ShoppingBagItem.styles";
 import { useStore } from "../../../store/store";
 
 type ShoppingBagItemProps = {
@@ -11,6 +11,7 @@ export default function ShoppingBagItem(props: ShoppingBagItemProps) {
   const { item } = props;
   const [quantity, setQuantity] = useState(item.quantity);
   const updateItemInBag = useStore((state) => state.updateItemInBag);
+  const removeItemFromBag = useStore((state) => state.removeItemFromBag);
 
   function handleQuantityChange(e: React.ChangeEvent<HTMLInputElement>) {
     const newValue: number = isNaN(parseInt(e.target.value))
@@ -30,11 +31,18 @@ export default function ShoppingBagItem(props: ShoppingBagItemProps) {
     }
   }
 
+  function handleDeleteClick() {
+    removeItemFromBag(item);
+  }
+
   return (
-    <ShoppingBagItemContainer>
-      <input type="number" value={quantity} onChange={handleQuantityChange} />
-      <span>{item.name}</span>
-      <span>{(item.price * item.quantity).toFixed(2)}</span>
-    </ShoppingBagItemContainer>
+    <Row>
+      <ShoppingBagItemContainer>
+        <input type="number" value={quantity} onChange={handleQuantityChange} />
+        <span>{item.name}</span>
+        <span>{(item.price * item.quantity).toFixed(2)}</span>
+      </ShoppingBagItemContainer>
+      <button onClick={handleDeleteClick}>Delete item</button>
+    </Row>
   );
 }
