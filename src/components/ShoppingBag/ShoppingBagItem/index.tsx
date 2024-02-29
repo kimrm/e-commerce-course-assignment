@@ -1,21 +1,16 @@
-import {
-  IShoppingBagItem,
-  IShoppingBagContextValue,
-} from "../../../types/ShoppingBagTypes";
+import { useState } from "react";
+import { IShoppingBagItem } from "../../../types/ShoppingBagTypes";
 import { ShoppingBagItemContainer } from "./ShoppingBagItem.styles";
-import ShoppingBagContext from "../../../contexts/ShoppingBagContext";
+import { useStore } from "../../../store/store";
 
-import { useState, useContext } from "react";
-
-interface ShoppingBagItemProps {
+type ShoppingBagItemProps = {
   item: IShoppingBagItem;
-}
+};
 
 export default function ShoppingBagItem(props: ShoppingBagItemProps) {
   const { item } = props;
   const [quantity, setQuantity] = useState(item.quantity);
-  const { updateItemsInShoppingBag } =
-    useContext<IShoppingBagContextValue>(ShoppingBagContext);
+  const updateItemInBag = useStore((state) => state.updateItemInBag);
 
   function handleQuantityChange(e: React.ChangeEvent<HTMLInputElement>) {
     const newValue: number = isNaN(parseInt(e.target.value))
@@ -31,7 +26,7 @@ export default function ShoppingBagItem(props: ShoppingBagItemProps) {
         quantity: newValue,
       };
       console.log("New item ", newItem);
-      updateItemsInShoppingBag(newItem);
+      updateItemInBag(newItem);
     }
   }
 

@@ -1,6 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import ShoppingBagContext from "../../contexts/ShoppingBagContext";
-import { IShoppingBagContextValue } from "../../types/ShoppingBagTypes";
+import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import {
   ShoppingBagButton,
@@ -14,16 +12,13 @@ import { useStore } from "../../store/store";
 
 export default function ShoppingBag() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const contextValue = useContext<IShoppingBagContextValue>(ShoppingBagContext);
-  const shoppingBag = contextValue?.shoppingBag;
   const controls = useAnimation();
   const backDropControls = useAnimation();
-
   const bagItems = useStore((state) => state.bagItems);
 
   useEffect(() => {
     controls.start({ opacity: 1, scale: [0.5, 1] });
-  }, [shoppingBag, controls]);
+  }, [bagItems, controls]);
 
   function handleButtonClick() {
     setIsPopupVisible((prev) => !prev);
@@ -78,7 +73,7 @@ export default function ShoppingBag() {
             ></path>
           </svg>
           <span>
-            {shoppingBag?.items.reduce((acc, curr) => {
+            {bagItems.reduce((acc, curr) => {
               return acc + curr.quantity;
             }, 0)}
           </span>

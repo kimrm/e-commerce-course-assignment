@@ -25,6 +25,14 @@ export const useStore = create<ShoppingBagSlice>()((...a) =>
 );
 
 function handleAddItemToBag(state: ShoppingBagSlice, item: IShoppingBagItem) {
+  const itemExistsInBag = state.bagItems.find((i) => i.id === item.id);
+  if (itemExistsInBag) {
+    return {
+      bagItems: state.bagItems.map((i) =>
+        i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
+      ),
+    };
+  }
   return { bagItems: [...state.bagItems, item] };
 }
 
