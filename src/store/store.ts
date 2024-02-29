@@ -1,4 +1,5 @@
 import { create, StateCreator } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { IShoppingBagItem } from "../types/ShoppingBagTypes";
 
 export type ShoppingBagSlice = {
@@ -20,8 +21,16 @@ export const createShoppingBagSlice: StateCreator<ShoppingBagSlice> = (
   updateItemInBag: (item) => set((state) => handleUpdateItemInBag(state, item)),
 });
 
-export const useStore = create<ShoppingBagSlice>()((...a) =>
-  createShoppingBagSlice(...a)
+export const useStore = create<ShoppingBagSlice>()(
+  persist(
+    (...a) => ({
+      ...createShoppingBagSlice(...a),
+    }),
+    {
+      name: "state-storage",
+      storage: createJSONStorage(() => sessionStorage),
+    }
+  )
 );
 
 function handleAddItemToBag(state: ShoppingBagSlice, item: IShoppingBagItem) {
