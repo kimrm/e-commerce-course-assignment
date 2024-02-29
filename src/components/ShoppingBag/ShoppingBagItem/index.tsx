@@ -34,7 +34,7 @@ export default function ShoppingBagItem(props: ShoppingBagItemProps) {
     <ShoppingBagItemContainer>
       <input type="number" value={quantity} onChange={handleQuantityChange} />
       <span>{item.name}</span>
-      <span>{item.price * item.quantity}</span>
+      <span>{(item.price * item.quantity).toFixed(2)}</span>
     </ShoppingBagItemContainer>
   );
 }
