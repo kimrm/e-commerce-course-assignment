@@ -24,6 +24,10 @@ export default function ShoppingBag() {
     setIsPopupVisible((prev) => !prev);
   }
 
+  function handleCheckoutClick() {
+    setIsPopupVisible(false);
+  }
+
   useEffect(() => {
     addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
@@ -81,7 +85,11 @@ export default function ShoppingBag() {
 
         {isPopupVisible && (
           <ShoppingBagPopup>
-            <Link to={"/checkout"} className="link">
+            <Link
+              onClick={handleCheckoutClick}
+              to={"/checkout"}
+              className="link"
+            >
               Go to Checkout
             </Link>
             <h3>Your Cart</h3>

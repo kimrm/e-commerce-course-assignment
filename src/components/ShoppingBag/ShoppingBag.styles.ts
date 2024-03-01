@@ -17,7 +17,7 @@ export const ShoppingBagPopup = styled.div`
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   border-radius: 1rem;
   padding: 2rem;
-  width: 20rem;
+  width: 30rem;
   max-height: calc(100vh - 8rem);
   overflow-y: auto;
   .link {

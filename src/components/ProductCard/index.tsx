@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { IProduct } from "../../types/ProductTypes";
 import { Card, CardLink } from "./ProductCard.styles";
 import AddToCart from "../AddToCart";
+import { motion } from "framer-motion";
 
 interface IProductCardProps {
   product: IProduct;
@@ -16,7 +17,11 @@ export default function ProductCard(props: IProductCardProps) {
   };
 
   return (
-    <Card>
+    <Card
+      as={motion.div}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+    >
       <Link to={`/product/${product.id}`}>
         <img src={product.image.url} alt={product.image.alt} />
       </Link>
