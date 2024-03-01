@@ -10,7 +10,7 @@ export default function CheckoutPage() {
           style={{
             display: "grid",
             gap: "1rem",
-            gridTemplateColumns: "1fr 2fr 1fr 1fr",
+            gridTemplateColumns: "3fr 1fr 1fr",
             justifyContent: "space-between",
             alignItems: "center",
             backgroundColor: "#222",
@@ -20,8 +20,7 @@ export default function CheckoutPage() {
             color: "#aaa",
           }}
         >
-          <span>Product Image</span>
-          <span>Product Name</span>
+          <span>Product</span>
           <span style={{ textAlign: "center" }}>Quantity</span>
           <span style={{ textAlign: "right" }}>Price</span>
         </li>
