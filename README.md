@@ -1,6 +1,6 @@
 # Shop-a-lot
 
-This a Web app made for a frontend developer course.
+Web app made for a frontend developer course.
 
 This project is work in progress.
 
