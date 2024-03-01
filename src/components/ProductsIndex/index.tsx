@@ -22,6 +22,7 @@ export default function ProductsIndex() {
       name: product.title,
       price: product.price,
       quantity: quantity,
+      productImage: product.image?.url,
     };
     addItemToBag(item);
   }
