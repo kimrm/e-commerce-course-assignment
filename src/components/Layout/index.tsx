@@ -2,21 +2,16 @@ import Header from "../Header";
 import Footer from "../Footer";
 import { Main } from "./Main.styles";
 import ProductsProvider from "../../providers/ProductsProvider";
+import { Outlet } from "react-router-dom";
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-export default function Layout(props: LayoutProps) {
-  const { children } = props;
-
+export default function Layout() {
   return (
-    <>
-      <ProductsProvider>
-        <Header />
-        <Main>{children}</Main>
-        <Footer />
-      </ProductsProvider>
-    </>
+    <ProductsProvider>
+      <Header />
+      <Main>
+        <Outlet />
+      </Main>
+      <Footer />
+    </ProductsProvider>
   );
 }

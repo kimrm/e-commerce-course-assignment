@@ -1,25 +1,28 @@
 import "./App.css";
 import Layout from "./components/Layout";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import ContactPage from "./pages/ContactPage";
 import CheckoutPage from "./pages/CheckoutPage";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/product/:productId" element={<ProductPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="*" element={<h1>Page does not exist</h1>} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        { path: "/", element: <HomePage /> },
+        { path: "/product/:productId", element: <ProductPage /> },
+        { path: "/checkout", element: <CheckoutPage /> },
+        { path: "/contact", element: <ContactPage /> },
+      ],
+    },
+
+    { path: "*", element: <h1>Page does not exist</h1> },
+  ]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
