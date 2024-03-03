@@ -8,7 +8,7 @@ This project is work in progress.
 
 - Vite
 - React
-- Typescript
+- TypeScript
 
 ### Packages
 
