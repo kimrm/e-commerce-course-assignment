@@ -9,7 +9,12 @@ This project is work in progress.
 - Vite
 - React
 - Typescript
+
+### Packages
+
 - React Router
 - Zustand state manager
 - Styled Components
 - Framer Motion
+- React Hook Form
+- Yup
