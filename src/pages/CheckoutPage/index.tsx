@@ -1,9 +1,34 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useStore } from "../../store/store";
 import { motion } from "framer-motion";
+import useCartTotal from "../../hooks/useCartTotal";
+
+function CheckOutSuccessPage() {
+  return (
+    <div>
+      <h1>Order placed successfully</h1>
+      <p>Thank you for shopping with us</p>
+      <Link to="/">Go back to home</Link>
+    </div>
+  );
+}
 
 export default function CheckoutPage() {
   const bagItems = useStore((state) => state.bagItems);
   const removeItemFromBag = useStore((state) => state.removeItemFromBag);
+  const clearBag = useStore((state) => state.clearBag);
+  const total = useCartTotal();
+  const [isOrderPlaced, setIsOrderPlaced] = useState(false);
+
+  function checkOutOrder() {
+    clearBag();
+    setIsOrderPlaced(true);
+  }
+
+  if (isOrderPlaced) {
+    return <CheckOutSuccessPage />;
+  }
 
   return (
     <div>
@@ -85,6 +110,28 @@ export default function CheckoutPage() {
           </motion.li>
         ))}
       </ul>
+      <div>Cart total: {total}</div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginTop: "1rem",
+        }}
+      >
+        <button
+          onClick={checkOutOrder}
+          style={{
+            backgroundColor: "green",
+            color: "white",
+            padding: "1rem",
+            borderRadius: 5,
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          Place Your Order
+        </button>
+      </div>
     </div>
   );
 }

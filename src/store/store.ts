@@ -8,6 +8,7 @@ export type ShoppingBagSlice = {
   addItemToBag: (item: IShoppingBagItem) => void;
   removeItemFromBag: (item: IShoppingBagItem) => void;
   updateItemInBag: (item: IShoppingBagItem) => void;
+  clearBag: () => void;
 };
 
 export const createShoppingBagSlice: StateCreator<ShoppingBagSlice> = (
@@ -19,6 +20,7 @@ export const createShoppingBagSlice: StateCreator<ShoppingBagSlice> = (
   removeItemFromBag: (item) =>
     set((state) => handleRemoveItemFromBag(state, item)),
   updateItemInBag: (item) => set((state) => handleUpdateItemInBag(state, item)),
+  clearBag: () => set(handleClearBag),
 });
 
 export const useStore = create<ShoppingBagSlice>()(
@@ -32,6 +34,10 @@ export const useStore = create<ShoppingBagSlice>()(
     }
   )
 );
+
+function handleClearBag() {
+  return { bagItems: [] };
+}
 
 function handleAddItemToBag(state: ShoppingBagSlice, item: IShoppingBagItem) {
   const itemExistsInBag = state.bagItems.find((i) => i.id === item.id);

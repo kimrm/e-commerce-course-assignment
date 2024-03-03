@@ -9,12 +9,14 @@ import {
 import ShoppingBagItem from "./ShoppingBagItem";
 import { Link } from "react-router-dom";
 import { useStore } from "../../store/store";
+import useCartTotal from "../../hooks/useCartTotal";
 
 export default function ShoppingBag() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const controls = useAnimation();
   const backDropControls = useAnimation();
   const bagItems = useStore((state) => state.bagItems);
+  const total = useCartTotal();
 
   useEffect(() => {
     controls.start({ opacity: 1, scale: [0.5, 1] });
@@ -96,7 +98,7 @@ export default function ShoppingBag() {
             {bagItems.map((item) => (
               <ShoppingBagItem key={item.id} item={item} />
             ))}
-            <div className="total">Total: 1999.99</div>
+            <div className="total">Total: {total}</div>
           </ShoppingBagPopup>
         )}
       </ShoppingBagContainer>
