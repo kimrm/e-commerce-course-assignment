@@ -3,6 +3,9 @@ import { IProduct } from "../../types/ProductTypes";
 import { Card, CardLink } from "./ProductCard.styles";
 import AddToCart from "../AddToCart";
 import { motion } from "framer-motion";
+import useReviews from "../../hooks/useReviews";
+import ProductsContext from "../../contexts/ProductsContext";
+import { useContext } from "react";
 
 interface IProductCardProps {
   product: IProduct;
@@ -10,7 +13,9 @@ interface IProductCardProps {
 }
 
 export default function ProductCard(props: IProductCardProps) {
+  const { products } = useContext(ProductsContext);
   const { product, handleAddToCart } = props;
+  const { averageRating } = useReviews(product.id, products);
 
   const handleItemAdded = (quantity: number) => {
     handleAddToCart(product, quantity);
@@ -35,6 +40,9 @@ export default function ProductCard(props: IProductCardProps) {
         )}
       </p>
       <p>{product.description}</p>
+      <p>
+        Rating: {isNaN(averageRating) ? "no ratings" : averageRating.toFixed(1)}
+      </p>
       <AddToCart itemAdded={handleItemAdded} />
     </Card>
   );

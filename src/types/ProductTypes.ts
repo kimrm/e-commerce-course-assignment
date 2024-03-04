@@ -21,3 +21,10 @@ interface IProductReview {
   rating: number;
   description: string;
 }
+
+export interface IReview {
+  id: string;
+  username: string;
+  rating: number;
+  description: string;
+}

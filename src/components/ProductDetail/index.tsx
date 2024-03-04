@@ -2,6 +2,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import usePageTitle from "../../hooks/usePageTitle";
 import { IProduct } from "../../types/ProductTypes";
+import useReviews from "../../hooks/useReviews";
+import ProductsContext from "../../contexts/ProductsContext";
+import { useContext } from "react";
 
 function useImage(imageUrl: string) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -12,6 +15,7 @@ function useImage(imageUrl: string) {
     img.src = imageUrl;
     img.onload = () => {
       setIsLoaded(true);
+      setIsError(false);
     };
     img.onerror = () => {
       setIsError(true);
@@ -26,6 +30,9 @@ export default function ProductDetail() {
   const [product, setProduct] = useState<IProduct | null>(null);
   const { isLoaded, isError } = useImage(product?.image.url ?? "");
   usePageTitle(product?.title + " | Shop-a-lot");
+  const productsContext = useContext(ProductsContext);
+  const { products } = productsContext || {};
+  const { reviews } = useReviews(productId ?? "", products ?? []);
 
   useEffect(() => {
     fetchData(productId ?? "").then((data) => {
@@ -44,6 +51,16 @@ export default function ProductDetail() {
         <div>Loading image</div>
       )}
       {isError && <div>Image failed to load</div>}
+      <h2>Reviews</h2>
+      <ul>
+        {reviews.map((review) => (
+          <li key={review.id}>
+            <h3>{review.username}</h3>
+            <p>{review.description}</p>
+            <p>Rating: {review.rating}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
