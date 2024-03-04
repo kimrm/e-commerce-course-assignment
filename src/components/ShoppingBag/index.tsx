@@ -19,7 +19,12 @@ export default function ShoppingBag() {
   const total = useCartTotal();
 
   useEffect(() => {
-    controls.start({ opacity: 1, scale: [0.5, 1] });
+    controls.start({
+      opacity: 1,
+      scale: [0.5, 1],
+      backgroundColor: ["#000", "#ccc"],
+      transitionEnd: { backgroundColor: "#0eb009" },
+    });
   }, [bagItems, controls]);
 
   function handleButtonClick() {
@@ -59,7 +64,12 @@ export default function ShoppingBag() {
         <ShoppingBagButton
           as={motion.button}
           animate={controls}
-          transition={{ duration: 0.5 }}
+          transition={{
+            duration: 0.4,
+            damping: 10,
+            stiffness: 1000,
+            type: "spring",
+          }}
           onClick={handleButtonClick}
         >
           <svg

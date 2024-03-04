@@ -3,13 +3,45 @@ import { Link } from "react-router-dom";
 import { useStore } from "../../store/store";
 import { motion } from "framer-motion";
 import useCartTotal from "../../hooks/useCartTotal";
+import { styled } from "styled-components";
+
+const ListItem = styled.li`
+  padding: 0.5rem 0;
+`;
+
+const LinkStyled = styled(Link)`
+  color: #fff;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    color: #ccc;
+  }
+`;
 
 function CheckOutSuccessPage() {
   return (
     <div>
       <h1>Order placed successfully</h1>
-      <p>Thank you for shopping with us</p>
-      <Link to="/">Go back to home</Link>
+      <p>Thank you for shopping with us.</p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic explicabo
+        laborum temporibus ex, perferendis, architecto impedit commodi illum
+        autem ut velit voluptatem molestias nesciunt. Eius labore aperiam nulla
+        dolorem animi!
+      </p>
+      <h2>Next steps</h2>
+      <ul>
+        <ListItem>
+          <LinkStyled as={Link} to="/">
+            Shop for more products
+          </LinkStyled>
+        </ListItem>
+        <ListItem>
+          <LinkStyled as={Link} to="/contact">
+            Contact us for questions about your order
+          </LinkStyled>
+        </ListItem>
+      </ul>
     </div>
   );
 }

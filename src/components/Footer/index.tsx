@@ -1,3 +1,7 @@
+import { FooterContainer } from "./Footer.styles";
+
 export default function Footer() {
-  return <footer>Shop-A-Lot {new Date().getFullYear()}</footer>;
+  return (
+    <FooterContainer>Shop-A-Lot {new Date().getFullYear()}</FooterContainer>
+  );
 }

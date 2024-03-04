@@ -1,4 +1,4 @@
-import { BackDrop, ModalContent } from "./Modal.styles";
+import { BackDrop, ModalContent, Button, ModalContainer } from "./Modal.styles";
 import { motion } from "framer-motion";
 
 interface ModalProps {
@@ -16,10 +16,14 @@ export default function Modal(props: ModalProps) {
   return (
     <>
       <BackDrop onClick={handleClose} />
-      <ModalContent as={motion.div} initial={{ y: -100 }} animate={{ y: 0 }}>
-        {children}
-        <button onClick={handleClose}>Close</button>
-      </ModalContent>
+      <ModalContainer>
+        <ModalContent as={motion.div} initial={{ y: -100 }} animate={{ y: 0 }}>
+          {children}
+          <Button className="primary" onClick={handleClose}>
+            Close
+          </Button>
+        </ModalContent>
+      </ModalContainer>
     </>
   );
 }

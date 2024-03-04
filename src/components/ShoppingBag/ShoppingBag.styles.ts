@@ -51,7 +51,7 @@ export const ShoppingBagButton = styled.button`
   display: flex;
   color: white;
   padding: 1rem;
-  background-color: #000;
+  background-color: green;
   border-radius: 15%;
   gap: 0.5rem;
   border: none;
