@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { IProduct } from "../../types/ProductTypes";
-import ProductsContext from "../../contexts/ProductsContext";
+import { ProductsContext } from "../../contexts/ProductsContext";
 import {
   SearchContainer,
   SearchResultsContainer,
@@ -8,6 +8,7 @@ import {
   BackDrop,
 } from "./Search.styles";
 import { motion, useAnimation } from "framer-motion";
+import SearchResultItem from "./SearchResultItem";
 
 export default function Search() {
   const [searchText, setSearchText] = useState("");
@@ -87,13 +88,11 @@ export default function Search() {
               <p>{searchResults.length} results found</p>
               <ul>
                 {searchResults.map((product) => (
-                  // component
-                  <li key={product.id}>
-                    <h3>{product.title}</h3>
-                    <p>{product.price}</p>
-                    <p>Found in: skin care</p>
-                  </li>
-                  // component
+                  <SearchResultItem
+                    key={product.id}
+                    product={product}
+                    clicked={() => setSearchText("")}
+                  />
                 ))}
               </ul>
             </SearchResult>
