@@ -1,20 +1,31 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useStore } from "../../store/store";
 import { IProduct } from "../../types/ProductTypes";
 import { IShoppingBagItem } from "../../types/ShoppingBagTypes";
 import { ProductsList } from "./ProductsIndex.styles";
 import ProductCard from "../ProductCard";
-import ProductsContext from "../../contexts/ProductsContext";
+import { ProductsContext } from "../../contexts/ProductsContext";
+import { Status } from "../../types/ContextTypes";
 
 export default function ProductsIndex() {
-  const contextValue = useContext(ProductsContext);
+  const { products, state } = useContext(ProductsContext) || {};
+  const [displayLoader, setDisplayLoader] = useState<boolean>(false);
+
   const addItemToBag = useStore((state) => state.addItemToBag);
 
-  if (contextValue === null) {
-    return <div>Loading...</div>;
-  }
-
-  const { products } = contextValue;
+  useEffect(() => {
+    let timeOutId: number = 0;
+    if (state === Status.PENDING) {
+      timeOutId = setTimeout(() => {
+        setDisplayLoader(true);
+      }, 500);
+    } else {
+      setDisplayLoader(false);
+    }
+    return () => {
+      clearTimeout(timeOutId);
+    };
+  }, [state]);
 
   function handleAddToCart(product: IProduct, quantity: number = 1) {
     const item: IShoppingBagItem = {
@@ -26,10 +37,12 @@ export default function ProductsIndex() {
     };
     addItemToBag(item);
   }
-
+  if (displayLoader) {
+    return <div>Fetching our products catalogue. Please hold on...</div>;
+  }
   return (
     <ProductsList>
-      {products.map((product: IProduct) => (
+      {products?.map((product: IProduct) => (
         <ProductCard
           key={product.id}
           product={product}
