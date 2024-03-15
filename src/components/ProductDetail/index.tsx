@@ -1,38 +1,27 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import usePageTitle from "../../hooks/usePageTitle";
+import { useEffect, useState, useContext } from "react";
+import { FlexContainer } from "./index.styles";
+import { ProductsContext } from "../../contexts/ProductsContext";
+import { useStore } from "../../store/store";
+import { IShoppingBagItem } from "../../types/ShoppingBagTypes";
 import { IProduct } from "../../types/ProductTypes";
+import usePageTitle from "../../hooks/usePageTitle";
 import useReviews from "../../hooks/useReviews";
-import ProductsContext from "../../contexts/ProductsContext";
-import { useContext } from "react";
-
-function useImage(imageUrl: string) {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    const img = new Image();
-    img.src = imageUrl;
-    img.onload = () => {
-      setIsLoaded(true);
-      setIsError(false);
-    };
-    img.onerror = () => {
-      setIsError(true);
-    };
-  }, [imageUrl]);
-
-  return { isLoaded, isError };
-}
+import Image from "../Image";
+import AddToCart from "../AddToCart";
 
 export default function ProductDetail() {
   const { productId } = useParams<string>();
   const [product, setProduct] = useState<IProduct | null>(null);
-  const { isLoaded, isError } = useImage(product?.image.url ?? "");
+  const addItemToBag = useStore((state) => state.addItemToBag);
+
   usePageTitle(product?.title + " | Shop-a-lot");
   const productsContext = useContext(ProductsContext);
   const { products } = productsContext || {};
-  const { reviews } = useReviews(productId ?? "", products ?? []);
+  const { reviews, averageRating } = useReviews(
+    productId ?? "",
+    products ?? []
+  );
 
   useEffect(() => {
     fetchData(productId ?? "").then((data) => {
@@ -40,27 +29,58 @@ export default function ProductDetail() {
     });
   }, [productId]);
 
+  function handleAddToCart(quantity: number = 1) {
+    const item: IShoppingBagItem = {
+      id: product?.id ?? "",
+      name: product?.title ?? "",
+      price: product?.price ?? 0,
+      quantity: quantity,
+      productImage: product?.image?.url,
+    };
+    if (product) {
+      addItemToBag(item);
+    }
+  }
   return (
     <div>
-      <h1>{product?.title}</h1>
-      <p>{product?.description}</p>
-      <p>{product?.price}</p>
-      {isLoaded ? (
-        <img src={product?.image.url} alt={product?.image.alt} />
-      ) : (
-        <div>Loading image</div>
-      )}
-      {isError && <div>Image failed to load</div>}
-      <h2>Reviews</h2>
-      <ul>
-        {reviews.map((review) => (
-          <li key={review.id}>
-            <h3>{review.username}</h3>
-            <p>{review.description}</p>
-            <p>Rating: {review.rating}</p>
-          </li>
-        ))}
-      </ul>
+      Products -{" "}
+      {product?.tags.map((tag) => (
+        <span> {tag} </span>
+      ))}
+      <FlexContainer>
+        <div>
+          <h1>{product?.title}</h1>
+          <p>{product?.description}</p>
+          <p>{product?.price}</p>
+          <p>
+            Price NOW!{" "}
+            {product?.discountedPrice !== product?.price &&
+              product?.discountedPrice}
+          </p>
+          <AddToCart itemAdded={handleAddToCart} />
+          <h2>Reviews</h2>
+          <p>
+            This product has an average rating of: {averageRating.toFixed(1)}
+          </p>
+          <ul>
+            {reviews.map((review) => (
+              <li key={review.id}>
+                <h3>{review.username}</h3>
+                <p>{review.description}</p>
+                <p>Rating: {review.rating}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {product && (
+          <Image
+            src={product?.image.url}
+            alt={product?.image.alt}
+            width="100%"
+          />
+        )}
+      </FlexContainer>
     </div>
   );
 }
