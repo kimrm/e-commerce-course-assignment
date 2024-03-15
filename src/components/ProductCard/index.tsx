@@ -4,8 +4,9 @@ import { Card, CardLink } from "./ProductCard.styles";
 import AddToCart from "../AddToCart";
 import { motion } from "framer-motion";
 import useReviews from "../../hooks/useReviews";
-import ProductsContext from "../../contexts/ProductsContext";
+import { ProductsContext } from "../../contexts/ProductsContext";
 import { useContext } from "react";
+import Image from "../Image";
 
 interface IProductCardProps {
   product: IProduct;
@@ -13,9 +14,9 @@ interface IProductCardProps {
 }
 
 export default function ProductCard(props: IProductCardProps) {
-  const { products } = useContext(ProductsContext);
+  const { products } = useContext(ProductsContext) || {};
   const { product, handleAddToCart } = props;
-  const { averageRating } = useReviews(product.id, products);
+  const { averageRating } = useReviews(product.id, products || []);
 
   const handleItemAdded = (quantity: number) => {
     handleAddToCart(product, quantity);
@@ -28,7 +29,7 @@ export default function ProductCard(props: IProductCardProps) {
       animate={{ opacity: 1, y: 0 }}
     >
       <Link to={`/product/${product.id}`}>
-        <img src={product.image.url} alt={product.image.alt} />
+        <Image src={product.image.url} alt={product.image.alt} />
       </Link>
       <CardLink to={`/product/${product.id}`}>
         <h2>{product.title}</h2>
