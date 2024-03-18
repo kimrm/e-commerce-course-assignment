@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const Header = styled.header`
+export const HeaderRow = styled.header`
   background-color: #222;
   color: white;
   position: fixed;
   width: 100%;
 `;
 
-const HeaderContainer = styled.div`
+export const HeaderContainer = styled.div`
   padding: 2rem;
   max-width: 1400px;
   margin: 0 auto;
@@ -18,7 +18,7 @@ const HeaderContainer = styled.div`
   align-items: center;
 `;
 
-const LogoLink = styled(Link)`
+export const LogoLink = styled(Link)`
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
@@ -28,4 +28,21 @@ const LogoLink = styled(Link)`
   }
 `;
 
-export { Header, HeaderContainer, LogoLink };
+export const NavRight = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const MenuButton = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+  color: white;
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
