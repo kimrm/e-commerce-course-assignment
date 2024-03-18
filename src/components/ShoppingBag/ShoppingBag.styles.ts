@@ -49,13 +49,11 @@ export const ShoppingBagPopup = styled.div`
 
 export const ShoppingBagButton = styled.button`
   display: flex;
-  color: white;
-  padding: 1rem;
-  background-color: green;
-  border-radius: 15%;
   gap: 0.5rem;
   border: none;
   cursor: pointer;
+  background-color: transparent;
+  color: white;
 `;
 
 export const BackDrop = styled.div`
