@@ -22,8 +22,6 @@ export default function ShoppingBag() {
     controls.start({
       opacity: 1,
       scale: [0.5, 1],
-      backgroundColor: ["#000", "#ccc"],
-      transitionEnd: { backgroundColor: "#0eb009" },
     });
   }, [bagItems, controls]);
 
