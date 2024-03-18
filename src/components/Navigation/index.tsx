@@ -1,11 +1,20 @@
 import Search from "../Search";
 import { NavigationContainer, NavigationLink } from "./Navigation.styles";
 
-export default function Navigation() {
+interface NavigationProps {
+  open: boolean;
+  linkClicked: () => void;
+}
+
+export default function Navigation({ open, linkClicked }: NavigationProps) {
   return (
-    <NavigationContainer>
-      <NavigationLink to={"/"}>Home</NavigationLink>
-      <NavigationLink to={"/contact"}>Contact</NavigationLink>
+    <NavigationContainer open={open}>
+      <NavigationLink to={"/"} onClick={linkClicked}>
+        Home
+      </NavigationLink>
+      <NavigationLink to={"/contact"} onClick={linkClicked}>
+        Contact
+      </NavigationLink>
       <Search />
     </NavigationContainer>
   );
