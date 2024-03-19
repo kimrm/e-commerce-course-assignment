@@ -6,7 +6,6 @@ import {
   Status,
 } from "../types/ContextTypes";
 import { IProduct } from "../types/ProductTypes";
-import { set } from "react-hook-form";
 
 export const ProductsContext = createContext<ProductsContextValue | null>(null);
 
