@@ -10,8 +10,8 @@ type InputFieldProps = {
 };
 
 export default function InputField(props: InputFieldProps) {
-  const { type, id, placeholder, label, rows } = props;
-  const [validationError, setValidationError] = useState("error");
+  const { type, id, placeholder, label } = props;
+  const [validationError] = useState("error");
   return (
     <FormField>
       <LabelField>

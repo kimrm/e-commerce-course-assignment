@@ -11,9 +11,7 @@ type TextAreaFieldProps = {
 };
 
 export default function TextAreaField(props: TextAreaFieldProps) {
-  const [validationError, setValidationError] = useState(
-    "This field is required"
-  );
+  const [validationError] = useState("This field is required");
   return (
     <FormField>
       <LabelField>
