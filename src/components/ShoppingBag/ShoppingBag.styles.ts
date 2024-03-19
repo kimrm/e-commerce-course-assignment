@@ -54,6 +54,10 @@ export const ShoppingBagButton = styled.button`
   cursor: pointer;
   background-color: transparent;
   color: white;
+  border: 2px solid green;
+  border-radius: 50%;
+  padding: 1.2rem 1rem;
+  background-color: #111;
 `;
 
 export const BackDrop = styled.div`
