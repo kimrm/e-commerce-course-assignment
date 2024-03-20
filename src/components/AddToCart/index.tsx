@@ -25,6 +25,7 @@ export default function AddToCart(props: AddToCartProps) {
         onClick={() => {
           itemAdded(isNaN(parseInt(quantity)) ? 1 : parseInt(quantity));
         }}
+        title="Add to cart"
       >
         Add to cart
       </AddToCartButton>
