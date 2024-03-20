@@ -19,9 +19,7 @@ export default function ProductReviews({
   return (
     <ReviewsContainer>
       <h2>Average rating for this product:</h2>
-      <p>
-        <ProductReviewStars rating={averageRating} />
-      </p>
+      <ProductReviewStars rating={averageRating} />
       <h2>Customer reviews</h2>
       <ul>
         {reviews.map((review) => (

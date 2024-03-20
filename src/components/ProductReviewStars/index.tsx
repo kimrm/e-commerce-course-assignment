@@ -12,8 +12,8 @@ export default function ProductReviewStars({
       stars.push(
         <Star
           key={i}
-          isWithinRating={i - 1 <= rating}
-          fillGrade={(rating + 1 - i).toFixed(1)}
+          $isWithinRating={i - 1 <= rating}
+          $fillGrade={(rating + 1 - i).toFixed(1)}
           strokeWidth={1.5}
           stroke="currentColor"
           viewBox="0 0 24 24"

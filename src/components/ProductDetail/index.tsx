@@ -40,7 +40,10 @@ export default function ProductDetail() {
     const item: IShoppingBagItem = {
       id: product?.id ?? "",
       name: product?.title ?? "",
-      price: product?.price ?? 0,
+      price:
+        product?.discountedPrice !== product?.price
+          ? product?.discountedPrice ?? 0
+          : product?.price ?? 0,
       quantity: quantity,
       productImage: product?.image?.url,
     };

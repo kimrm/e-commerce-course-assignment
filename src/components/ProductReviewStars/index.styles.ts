@@ -6,8 +6,8 @@ export const StarContainer = styled.div`
 `;
 
 export const Star = styled.svg<{
-  isWithinRating?: boolean;
-  fillGrade?: string;
+  $isWithinRating?: boolean;
+  $fillGrade?: string;
   strokeWidth?: number;
   stroke?: string;
   viewBox?: string;
@@ -16,6 +16,6 @@ export const Star = styled.svg<{
   height: 20px;
   width: 20px;
   color: yellow;
-  fill: ${(props) => (props.isWithinRating ? "yellow" : "none")};
-  fill-opacity: ${(props) => props.fillGrade};
+  fill: ${(props) => (props.$isWithinRating ? "yellow" : "none")};
+  fill-opacity: ${(props) => props.$fillGrade};
 `;

@@ -31,7 +31,10 @@ export default function ProductsIndex() {
     const item: IShoppingBagItem = {
       id: product.id,
       name: product.title,
-      price: product.price,
+      price:
+        product?.discountedPrice !== product?.price
+          ? product?.discountedPrice ?? 0
+          : product?.price ?? 0,
       quantity: quantity,
       productImage: product.image?.url,
     };
