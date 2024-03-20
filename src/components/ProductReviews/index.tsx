@@ -1,4 +1,6 @@
 import ProductReviewStars from "../ProductReviewStars";
+import { ReviewsContainer } from "./index.styles";
+import Review from "../Review";
 
 interface ProductReviewsProps {
   reviews: {
@@ -15,21 +17,19 @@ export default function ProductReviews({
   averageRating,
 }: ProductReviewsProps) {
   return (
-    <>
-      <h2>Reviews</h2>
+    <ReviewsContainer>
+      <h2>Average rating for this product:</h2>
       <p>
-        This product has an average rating of:
         <ProductReviewStars rating={averageRating} />
       </p>
+      <h2>Customer reviews</h2>
       <ul>
         {reviews.map((review) => (
           <li key={review.id}>
-            <h3>{review.username}</h3>
-            <p>{review.description}</p>
-            <p>Rating: {review.rating}</p>
+            <Review review={review} />
           </li>
         ))}
       </ul>
-    </>
+    </ReviewsContainer>
   );
 }
