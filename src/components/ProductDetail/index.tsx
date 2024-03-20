@@ -78,7 +78,9 @@ export default function ProductDetail() {
           </p>
           <h3>Rating:</h3>
           <ProductReviewStars rating={averageRating} />
-          <AddToCart itemAdded={handleAddToCart} />
+          <section>
+            <AddToCart itemAdded={handleAddToCart} />
+          </section>
         </ProductDetailContainer>
         <ReviewsContainer>
           <ProductReviews reviews={reviews} averageRating={averageRating} />
