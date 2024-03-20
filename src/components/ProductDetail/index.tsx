@@ -1,6 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
-import { FlexContainer } from "./index.styles";
+import {
+  GridContainer,
+  ReviewsContainer,
+  ProductDetailContainer,
+  ProductTags,
+} from "./index.styles";
 import { ProductsContext } from "../../contexts/ProductsContext";
 import { useStore } from "../../store/store";
 import { IShoppingBagItem } from "../../types/ShoppingBagTypes";
@@ -9,6 +14,8 @@ import usePageTitle from "../../hooks/usePageTitle";
 import useReviews from "../../hooks/useReviews";
 import Image from "../Image";
 import AddToCart from "../AddToCart";
+import ProductReviews from "../ProductReviews";
+import ProductReviewStars from "../ProductReviewStars";
 
 export default function ProductDetail() {
   const { productId } = useParams<string>();
@@ -43,36 +50,16 @@ export default function ProductDetail() {
   }
   return (
     <div>
-      Products -{" "}
-      {product?.tags.map((tag) => (
-        <span> {tag} </span>
-      ))}
-      <FlexContainer>
-        <div>
-          <h1>{product?.title}</h1>
-          <p>{product?.description}</p>
-          <p>{product?.price}</p>
-          <p>
-            Price NOW!{" "}
-            {product?.discountedPrice !== product?.price &&
-              product?.discountedPrice}
-          </p>
-          <AddToCart itemAdded={handleAddToCart} />
-          <h2>Reviews</h2>
-          <p>
-            This product has an average rating of: {averageRating.toFixed(1)}
-          </p>
-          <ul>
-            {reviews.map((review) => (
-              <li key={review.id}>
-                <h3>{review.username}</h3>
-                <p>{review.description}</p>
-                <p>Rating: {review.rating}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-
+      <ProductTags>
+        <ul>
+          {product?.tags.map((tag) => (
+            <li key={tag}> {tag} </li>
+          ))}
+        </ul>
+      </ProductTags>
+      <h1>{product?.title}</h1>
+      <p>{product?.description}</p>
+      <GridContainer>
         {product && (
           <Image
             src={product?.image.url}
@@ -80,7 +67,23 @@ export default function ProductDetail() {
             width="100%"
           />
         )}
-      </FlexContainer>
+        <ProductDetailContainer>
+          <h3>Product ID:</h3>
+          <p>{product?.id}</p>
+          <h3>Price:</h3>
+          <p>
+            {product?.discountedPrice !== product?.price
+              ? product?.discountedPrice
+              : product?.price}
+          </p>
+          <h3>Rating:</h3>
+          <ProductReviewStars rating={averageRating} />
+          <AddToCart itemAdded={handleAddToCart} />
+        </ProductDetailContainer>
+        <ReviewsContainer>
+          <ProductReviews reviews={reviews} averageRating={averageRating} />
+        </ReviewsContainer>
+      </GridContainer>
     </div>
   );
 }
