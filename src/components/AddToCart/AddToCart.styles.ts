@@ -29,6 +29,7 @@ const AddToCartInput = styled.input`
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 50px;
+  font-size: 1rem;
 `;
 
 export { AddToCartButton, AddToCartInput, AddToCartContainer };
