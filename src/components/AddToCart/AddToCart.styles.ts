@@ -24,7 +24,7 @@ const AddToCartButton = styled.button`
   }
 `;
 
-const AddToCartInput = styled.input`
+const AddToCartInput = styled.input.attrs({ type: "number" })`
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #ccc;
