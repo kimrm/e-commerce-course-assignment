@@ -16,6 +16,8 @@ export default function AddToCart(props: AddToCartProps) {
     <AddToCartContainer>
       <AddToCartInput
         type="number"
+        inputMode="numeric"
+        pattern="[1-9]\d*"
         placeholder="1"
         value={quantity}
         min={1}
