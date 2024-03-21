@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
 import { IProduct } from "../../types/ProductTypes";
-import { Card, CardLink } from "./ProductCard.styles";
+import {
+  Card,
+  CardLink,
+  PriceTag,
+  DiscountTag,
+  NoReviews,
+} from "./ProductCard.styles";
 import AddToCart from "../AddToCart";
 import { motion } from "framer-motion";
 import useReviews from "../../hooks/useReviews";
 import { ProductsContext } from "../../contexts/ProductsContext";
 import { useContext } from "react";
 import Image from "../Image";
+import ProductReviewStars from "../ProductReviewStars";
 
 interface IProductCardProps {
   product: IProduct;
@@ -35,15 +42,21 @@ export default function ProductCard(props: IProductCardProps) {
         <h2>{product.title}</h2>
       </CardLink>
       <p>
-        {product.price}{" "}
-        {product.discountedPrice / product.price !== 1 && (
-          <span className="discount">{product.discountedPrice}</span>
+        <PriceTag $isDiscounted={product.isDiscounted ?? false}>
+          ${product.price}
+        </PriceTag>
+        {product.isDiscounted && (
+          <DiscountTag>${product.discountedPrice}</DiscountTag>
         )}
       </p>
       <p>{product.description}</p>
-      <p>
-        Rating: {isNaN(averageRating) ? "no ratings" : averageRating.toFixed(1)}
-      </p>
+      <section>
+        {product.reviews.length > 0 ? (
+          <ProductReviewStars rating={averageRating} />
+        ) : (
+          <NoReviews>No reviews yet</NoReviews>
+        )}
+      </section>
       <AddToCart itemAdded={handleItemAdded} />
     </Card>
   );

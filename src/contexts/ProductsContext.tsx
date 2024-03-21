@@ -27,7 +27,8 @@ export function ProductsProvider(props: ProductsProviderProps) {
     fetch("https://v2.api.noroff.dev/online-shop")
       .then((response) => response.json())
       .then((data) => {
-        setProducts(data.data);
+        const computedProducts = computeProducts(data.data);
+        setProducts(computedProducts);
         setStatus(Status.RESOLVED);
       })
       .catch((error) => {
@@ -35,6 +36,15 @@ export function ProductsProvider(props: ProductsProviderProps) {
         setStatus(Status.REJECTED);
       });
   }, []);
+
+  function computeProducts(products: IProduct[]) {
+    return products.map((product) => {
+      return {
+        ...product,
+        isDiscounted: product.price !== product.discountedPrice,
+      };
+    });
+  }
 
   return (
     <ProductsContext.Provider value={contextValue}>

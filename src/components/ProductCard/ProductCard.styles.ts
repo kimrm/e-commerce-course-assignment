@@ -1,7 +1,25 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Card = styled.div`
+export const NoReviews = styled.span`
+  color: #444;
+`;
+
+export const PriceTag = styled.span<{ $isDiscounted: boolean }>`
+  color: ${(props) => (props.$isDiscounted ? "red" : "inherit")};
+  text-decoration: ${(props) =>
+    props.$isDiscounted ? "line-through" : "none"};
+`;
+
+export const DiscountTag = styled.span`
+  color: green;
+  background-color: #222;
+  padding: 0.2rem;
+  border-radius: 5px;
+  margin-inline-start: 0.5rem;
+`;
+
+export const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -31,7 +49,7 @@ const Card = styled.div`
   }
 `;
 
-const CardLink = styled(Link)`
+export const CardLink = styled(Link)`
   color: #ccc;
   text-decoration: none;
   &:hover {
@@ -39,5 +57,3 @@ const CardLink = styled(Link)`
     color: #fff;
   }
 `;
-
-export { Card, CardLink };

@@ -3,6 +3,7 @@ export interface IProduct {
   title: string;
   price: number;
   discountedPrice: number;
+  isDiscounted?: boolean;
   description: string;
   rating: number;
   tags: string[];
