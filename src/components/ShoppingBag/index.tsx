@@ -106,7 +106,7 @@ export default function ShoppingBag() {
             {bagItems.map((item) => (
               <ShoppingBagItem key={item.id} item={item} />
             ))}
-            <div className="total">Total: {total}</div>
+            <div className="total">Total: {total.toFixed(2)}</div>
           </ShoppingBagPopup>
         )}
       </ShoppingBagContainer>
