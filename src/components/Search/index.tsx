@@ -71,7 +71,7 @@ export default function Search() {
       />
       <SearchContainer>
         <input
-          type="text"
+          type="search"
           placeholder="Search..."
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
