@@ -1,4 +1,4 @@
-import { BackDrop, ModalContent, Button, ModalContainer } from "./Modal.styles";
+import { BackDrop, ModalContent, ModalContainer } from "./Modal.styles";
 import { motion } from "framer-motion";
 
 interface ModalProps {
@@ -9,19 +9,18 @@ interface ModalProps {
 export default function Modal(props: ModalProps) {
   const { children, onClose } = props;
 
-  function handleClose() {
+  function handleClose(event: React.MouseEvent<HTMLDivElement>) {
+    event.bubbles = false;
+    event.stopPropagation();
     onClose();
   }
 
   return (
     <>
-      <BackDrop onClick={handleClose} />
       <ModalContainer>
+        <BackDrop onClick={handleClose} />
         <ModalContent as={motion.div} initial={{ y: -100 }} animate={{ y: 0 }}>
           {children}
-          <Button className="primary" onClick={handleClose}>
-            Close
-          </Button>
         </ModalContent>
       </ModalContainer>
     </>
