@@ -9,6 +9,7 @@ export const SearchContainer = styled.div`
     border-radius: 0.5rem;
     border: none;
     width: 100%;
+    font-size: 1rem;
   }
 `;
 
