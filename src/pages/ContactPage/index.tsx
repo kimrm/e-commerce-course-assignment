@@ -16,6 +16,9 @@ export default function ContactPage() {
         <Modal onClose={() => setIsModalOpen(false)}>
           <h2>Thank you</h2>
           <p>We will get back to you as soon as possible.</p>
+          <button className="primary" onClick={() => setIsModalOpen(false)}>
+            Close
+          </button>
         </Modal>
       )}
       <h1>Contact us</h1>
