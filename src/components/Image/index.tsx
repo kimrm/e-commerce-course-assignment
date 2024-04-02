@@ -25,7 +25,7 @@ interface ImageProps {
   onClick?: () => void;
 }
 export default function Image(props: ImageProps) {
-  const { isLoaded, isError } = useImageLoader(props.src);
+  const { isLoaded } = useImageLoader(props.src);
   return (
     <>
       {!isLoaded && <PlaceholderContainer />}
