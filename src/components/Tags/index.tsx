@@ -12,7 +12,7 @@ export default function Tags({ tags }: Props) {
         <li>
           <Link to="/">All</Link>
         </li>
-        {tags?.map((tag: string) => (
+        {tags.map((tag: string) => (
           <li key={tag}>
             <Link to={"/" + tag}>{tag}</Link>
           </li>
