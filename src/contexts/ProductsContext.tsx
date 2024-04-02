@@ -25,22 +25,19 @@ export function ProductsProvider(props: ProductsProviderProps) {
   );
 
   useEffect(() => {
-    const tags = products.reduce((acc, product) => {
-      product.tags.forEach((tag) => {
-        acc.add(tag);
-      });
-      return acc;
-    }, new Set<string>());
-    const sortedTags = Array.from(tags).sort();
-    setTags(sortedTags);
-  }, [products]);
-
-  useEffect(() => {
     setStatus(Status.PENDING);
     fetch("https://v2.api.noroff.dev/online-shop")
       .then((response) => response.json())
       .then((data) => {
         const computedProducts = computeProducts(data.data);
+        const tags = computedProducts.reduce((acc, product) => {
+          product.tags.forEach((tag) => {
+            acc.add(tag);
+          });
+          return acc;
+        }, new Set<string>());
+        const sortedTags = Array.from(tags).sort();
+        setTags(sortedTags);
         setProducts(computedProducts);
         setStatus(Status.RESOLVED);
       })
