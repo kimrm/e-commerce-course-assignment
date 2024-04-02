@@ -3,9 +3,9 @@ import { IProduct } from "../../types/ProductTypes";
 import {
   Card,
   CardLink,
-  PriceTag,
-  DiscountTag,
   NoReviews,
+  Description,
+  Reviews,
 } from "./ProductCard.styles";
 import AddToCart from "../AddToCart";
 import { motion } from "framer-motion";
@@ -14,6 +14,7 @@ import { ProductsContext } from "../../contexts/ProductsContext";
 import { useContext } from "react";
 import Image from "../Image";
 import ProductReviewStars from "../ProductReviewStars";
+import PriceTag from "../PriceTag";
 
 interface IProductCardProps {
   product: IProduct;
@@ -41,22 +42,25 @@ export default function ProductCard(props: IProductCardProps) {
       <CardLink to={`/product/${product.id}`}>
         <h2>{product.title}</h2>
       </CardLink>
-      <p>
-        <PriceTag $isDiscounted={product.isDiscounted ?? false}>
-          ${product.price}
-        </PriceTag>
-        {product.isDiscounted && (
-          <DiscountTag>${product.discountedPrice}</DiscountTag>
-        )}
-      </p>
-      <p>{product.description}</p>
-      <section>
+      <PriceTag price={product.price} discount={product.discountedPrice} />
+      <Description>
+        <p aria-label={product.description}>
+          {product.description.slice(0, 40)}...
+        </p>
+        <Link
+          to={`/product/${product.id}`}
+          aria-label={`View product details for ${product.title}`}
+        >
+          View product details
+        </Link>
+      </Description>
+      <Reviews>
         {product.reviews.length > 0 ? (
           <ProductReviewStars rating={averageRating} />
         ) : (
           <NoReviews>No reviews yet</NoReviews>
         )}
-      </section>
+      </Reviews>
       <AddToCart itemAdded={handleItemAdded} />
     </Card>
   );

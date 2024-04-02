@@ -12,7 +12,7 @@ function App() {
       path: "/",
       element: <Layout />,
       children: [
-        { path: "/", element: <HomePage /> },
+        { path: "/:tag?", element: <HomePage /> },
         { path: "/product/:productId", element: <ProductPage /> },
         { path: "/checkout", element: <CheckoutPage /> },
         { path: "/contact", element: <ContactPage /> },

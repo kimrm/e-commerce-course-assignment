@@ -1,6 +1,9 @@
 import ProductsIndex from "../../components/ProductsIndex";
+import { useParams } from "react-router-dom";
 
 export default function HomePage() {
+  const { tag } = useParams();
+
   return (
     <>
       <section>
@@ -13,7 +16,7 @@ export default function HomePage() {
         </p>
       </section>
       <section>
-        <ProductsIndex />
+        <ProductsIndex tag={tag} />
       </section>
     </>
   );

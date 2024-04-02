@@ -12,15 +12,28 @@ export const ProductsContext = createContext<ProductsContextValue | null>(null);
 export function ProductsProvider(props: ProductsProviderProps) {
   const { children } = props;
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [tags, setTags] = useState<string[]>([]);
   const [status, setStatus] = useState(Status.IDLE);
   const contextValue: ProductsContextValue = useMemo(
     () => ({
       products: products,
       state: status,
+      tags: tags,
       setProducts,
     }),
     [products, status]
   );
+
+  useEffect(() => {
+    const tags = products.reduce((acc, product) => {
+      product.tags.forEach((tag) => {
+        acc.add(tag);
+      });
+      return acc;
+    }, new Set<string>());
+    const sortedTags = Array.from(tags).sort();
+    setTags(sortedTags);
+  }, [products]);
 
   useEffect(() => {
     setStatus(Status.PENDING);

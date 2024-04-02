@@ -26,19 +26,18 @@ interface ImageProps {
 }
 export default function Image(props: ImageProps) {
   const { isLoaded, isError } = useImageLoader(props.src);
-  if (isLoaded) {
-    return (
-      <ImageContainer
-        as={motion.img}
-        transition={{ duration: 1 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        {...props}
-      ></ImageContainer>
-    );
-  }
-  if (isError) {
-    return <div>Image failed to load</div>;
-  }
-  return <PlaceholderContainer>Loading image</PlaceholderContainer>;
+  return (
+    <>
+      {!isLoaded && <PlaceholderContainer />}
+      {isLoaded && (
+        <ImageContainer
+          as={motion.img}
+          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          {...props}
+        ></ImageContainer>
+      )}
+    </>
+  );
 }

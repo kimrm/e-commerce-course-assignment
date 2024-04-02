@@ -5,6 +5,7 @@ import {
   ReviewsContainer,
   ProductDetailContainer,
   ProductTags,
+  LoadingContainer,
 } from "./index.styles";
 import { ProductsContext } from "../../contexts/ProductsContext";
 import { useStore } from "../../store/store";
@@ -16,6 +17,9 @@ import Image from "../Image";
 import AddToCart from "../AddToCart";
 import ProductReviews from "../ProductReviews";
 import ProductReviewStars from "../ProductReviewStars";
+import PriceTag from "../PriceTag";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function ProductDetail() {
   const { productId } = useParams<string>();
@@ -51,44 +55,67 @@ export default function ProductDetail() {
       addItemToBag(item);
     }
   }
+
   return (
     <div>
+      {!product && (
+        <LoadingContainer
+          as={motion.div}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
+          Loading. Please wait...
+        </LoadingContainer>
+      )}
       <ProductTags>
         <ul>
+          <li>
+            <Link to="/">All</Link>
+          </li>
           {product?.tags.map((tag) => (
-            <li key={tag}> {tag} </li>
+            <li key={tag}>
+              <Link to={"/" + tag}> {tag}</Link>{" "}
+            </li>
           ))}
         </ul>
       </ProductTags>
+
       <h1>{product?.title}</h1>
       <p>{product?.description}</p>
-      <GridContainer>
-        {product && (
+
+      {product && (
+        <GridContainer>
           <Image
             src={product?.image.url}
             alt={product?.image.alt}
             width="100%"
           />
-        )}
-        <ProductDetailContainer>
-          <h3>Product ID:</h3>
-          <p>{product?.id}</p>
-          <h3>Price:</h3>
-          <p>
-            {product?.discountedPrice !== product?.price
-              ? product?.discountedPrice
-              : product?.price}
-          </p>
-          <h3>Rating:</h3>
-          <ProductReviewStars rating={averageRating} />
-          <section>
-            <AddToCart itemAdded={handleAddToCart} />
-          </section>
-        </ProductDetailContainer>
-        <ReviewsContainer>
-          <ProductReviews reviews={reviews} averageRating={averageRating} />
-        </ReviewsContainer>
-      </GridContainer>
+
+          <ProductDetailContainer
+            as={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <h3>Product ID:</h3>
+            <p>{product?.id}</p>
+            <h3>Price:</h3>
+            <PriceTag
+              price={product?.price ?? 0}
+              discount={product?.discountedPrice ?? 0}
+            />
+            <h3>Rating:</h3>
+            <ProductReviewStars rating={averageRating} />
+            <section>
+              <AddToCart itemAdded={handleAddToCart} />
+            </section>
+          </ProductDetailContainer>
+          <ReviewsContainer>
+            <ProductReviews reviews={reviews} averageRating={averageRating} />
+          </ReviewsContainer>
+        </GridContainer>
+      )}
     </div>
   );
 }

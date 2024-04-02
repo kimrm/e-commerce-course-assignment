@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+`;
+
 export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -30,14 +37,27 @@ export const ProductTags = styled.div`
   margin-block-end: 2rem;
   ul {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     list-style: none;
     padding: 0;
     margin: 0;
     li {
       background-color: #333;
-      padding: 0.5rem 1rem;
       border-radius: 5px;
+      &:hover {
+        background-color: #444;
+      }
+      a {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: #ccc;
+        text-decoration: none;
+        text-transform: capitalize;
+        &:hover {
+          color: #fff;
+        }
+      }
     }
   }
 `;

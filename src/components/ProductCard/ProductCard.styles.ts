@@ -5,24 +5,27 @@ export const NoReviews = styled.span`
   color: #444;
 `;
 
-export const PriceTag = styled.span<{ $isDiscounted: boolean }>`
-  color: ${(props) => (props.$isDiscounted ? "red" : "inherit")};
-  text-decoration: ${(props) =>
-    props.$isDiscounted ? "line-through" : "none"};
+export const Description = styled.div`
+  p {
+    color: #ccc;    
+  }
+  a {
+    display: block;
+    text-decoration-style: dotted;
+    color: #ccc;
+    &:hover {      
+      color: #fff;
+    
+  }
 `;
 
-export const DiscountTag = styled.span`
-  color: green;
-  background-color: #222;
-  padding: 0.2rem;
-  border-radius: 5px;
-  margin-inline-start: 0.5rem;
+export const Reviews = styled.div`
+  padding-block: 1rem;
 `;
 
 export const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: repeat(3, auto) 1fr auto;
   background-color: #111;
   color: #ccc;
   border-radius: 15px;

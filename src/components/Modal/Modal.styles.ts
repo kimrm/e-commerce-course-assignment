@@ -29,20 +29,28 @@ export const ModalContent = styled.div`
   max-width: 90%;
   margin: auto;
   button {
-    padding: 0.5rem 2rem;
-    border-radius: 5px;
-    border: none;
-    font-size: 1rem;
-    color: white;
-    cursor: pointer;
+    color: #000;
+    border: #444 solid 1px;
+    height: 2.5rem;
+    font-size: 0.8rem;
     font-weight: bold;
-    margin-inline-end: 1rem;
-    margin-block-end: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 100%;
+    margin-block: 0.5rem;
     &.primary {
-      background-color: #007bff;
+      background-color: #24b90c;
+      &:hover {
+        background-color: #4ae931;
+      }
     }
     &.secondary {
       background-color: #6c757d;
+      &:hover {
+        background-color: #8c959d;
+      }
     }
   }
 `;
