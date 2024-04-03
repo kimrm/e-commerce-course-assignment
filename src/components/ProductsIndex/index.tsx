@@ -93,7 +93,7 @@ export default function ProductsIndex({ tag }: Props) {
         </Modal>
       )}
 
-      {tags && <Tags tags={tags} />}
+      {tags && <Tags tags={tags} selectedTag={tag} />}
 
       <ProductsList>
         {displayedProducts.map((product: IProduct) => (
