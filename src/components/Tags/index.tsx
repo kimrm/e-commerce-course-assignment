@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProductTagSelect, ProductTags } from "./index.styles";
 import { Link, useNavigate } from "react-router-dom";
+import { Select } from "@chakra-ui/react";
 
 interface Props {
   tags: string[];
@@ -24,18 +25,27 @@ export default function Tags({ tags, selectedTag }: Props) {
     navigate("/" + e.currentTarget.value);
   }
 
+  function capitalize(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   return (
     <>
       <ProductTagSelect>
-        <label htmlFor="product-tags">Product Category:</label>
-        <select id="product-tags" onChange={handleTagSelected}>
+        <Select
+          variant="filled"
+          bg={"#333"}
+          _hover={{ bg: "#444" }}
+          placeholder="Filter category"
+          onChange={handleTagSelected}
+        >
           <option value="">All</option>
           {tags.map((tag: string) => (
             <option key={tag} value={tag}>
-              {tag}
+              {capitalize(tag)}
             </option>
           ))}
-        </select>
+        </Select>
       </ProductTagSelect>
       <ProductTags>
         <ul>

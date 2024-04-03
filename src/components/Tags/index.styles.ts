@@ -1,30 +1,10 @@
 import styled from "styled-components";
 
 export const ProductTagSelect = styled.div`
-  display: flex;
-  background-color: #444;
+  position: relative;
+  display: block;
+  z-index: 0;
   margin-block-end: 2rem;
-  label {
-    display: block;
-    margin-block-end: 0.5rem;
-    font-weight: bold;
-  }
-  select {
-    background-color: #333;
-    border: none;
-    display: block;
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #333;
-    option {
-      color: #333;
-      background-color: #444;
-    }
-  }
-
   @media (min-width: 768px) {
     display: none;
   }
