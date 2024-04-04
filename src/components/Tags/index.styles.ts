@@ -2,11 +2,36 @@ import styled from "styled-components";
 
 export const ProductTagSelect = styled.div`
   position: relative;
+  tab-index: 0;
   display: block;
-  z-index: 0;
   margin-block-end: 2rem;
+  background-color: #333;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
   @media (min-width: 768px) {
     display: none;
+  }
+  &::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    color: #ccc;
+  }
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    background-color: #333;
+    background-image: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    color: #ccc;
+    font-size: 1rem;
   }
 `;
 
