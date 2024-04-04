@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ProductTagSelect, ProductTags } from "./index.styles";
+import { Container, ProductTagSelect, ProductTags } from "./index.styles";
 import { Link, useNavigate } from "react-router-dom";
 
 interface Props {
@@ -29,9 +29,15 @@ export default function Tags({ tags, selectedTag }: Props) {
   }
 
   return (
-    <>
+    <Container>
+      <h2>Product categories</h2>
       <ProductTagSelect>
-        <select onChange={handleTagSelected}>
+        <select
+          name="tag-select"
+          id="tag-select"
+          value={selectedTag}
+          onChange={handleTagSelected}
+        >
           <option value="">All</option>
           {tags.map((tag: string) => (
             <option key={tag} value={tag}>
@@ -56,6 +62,6 @@ export default function Tags({ tags, selectedTag }: Props) {
           ))}
         </ul>
       </ProductTags>
-    </>
+    </Container>
   );
 }

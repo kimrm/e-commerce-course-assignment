@@ -15,9 +15,14 @@ export const HeaderContainer = styled.div`
   margin: 0 auto;
   width: 100%;
   height: 100px;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr 1fr auto;
   justify-content: space-between;
+  gap: 1rem;
   align-items: center;
+  @media (max-width: 768px) {
+    grid-template-columns: auto auto auto;
+  }
 `;
 
 export const LogoLink = styled(Link)`
@@ -25,8 +30,12 @@ export const LogoLink = styled(Link)`
   font-weight: bold;
   text-decoration: none;
   color: white;
+  margin-right: 1rem;
   &:hover {
     color: #61dafb;
+  }
+  @media (max-width: 500px) {
+    font-size: 1rem;
   }
 `;
 

@@ -8,6 +8,7 @@ import {
 } from "./Header.styles";
 import Navigation from "../Navigation";
 import ShoppingBag from "../ShoppingBag";
+import Search from "../Search";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,8 +20,9 @@ export default function Header() {
   return (
     <HeaderRow>
       <HeaderContainer>
-        <LogoLink to="/">Shop-a-lot</LogoLink>
+        <LogoLink to="/">S-A-L</LogoLink>
         <Navigation open={menuOpen} linkClicked={handleLinkClicked} />
+        <Search />
         <NavRight>
           <ShoppingBag />
           <MenuButton onClick={handleMenuButtonClicked}>

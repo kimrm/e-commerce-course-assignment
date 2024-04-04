@@ -7,12 +7,11 @@ export default function HomePage() {
   return (
     <>
       <section>
-        <h1>Browse our catalogue of amazing products</h1>
+        <h2>Welcome to Shop-a-lot</h2>
+        <h1>Your one-stop shop for all things amazing</h1>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro fugit
-          cupiditate ipsa esse qui placeat, beatae fuga asperiores sapiente,
-          quas illo nesciunt, nam consequuntur molestias dolore blanditiis
-          aliquam. Optio, molestias!
+          Browse our catalogue of amazing products. We have everything you need
+          from hair dryers and headphones to perfume.
         </p>
       </section>
       <section>

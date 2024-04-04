@@ -18,6 +18,7 @@ export const ShoppingBagPopup = styled.div`
   border-radius: 1rem;
   padding: 2rem;
   width: 30rem;
+  margin: auto;
   max-height: calc(100vh - 8rem);
   overflow-y: auto;
   .link {
@@ -28,13 +29,14 @@ export const ShoppingBagPopup = styled.div`
     width: 100%;
     padding: 1rem;
     text-decoration: none;
-    border: green 2px solid;
-    background-color: #444;
+    justify-content: center;
+    text-align: center;
+    background-color: green;
     color: white;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
     &:hover {
-      background-color: #555;
+      background-color: darkgreen;
     }
   }
   .total {
@@ -43,17 +45,31 @@ export const ShoppingBagPopup = styled.div`
   }
   @media (max-width: 600px) {
     left: 0;
-    width: 100vw;
+    width: 95vw;
   }
 `;
 
 export const ShoppingBagButton = styled.button`
+  position: relative;
   display: flex;
   gap: 0.5rem;
   border: none;
   cursor: pointer;
   background-color: transparent;
-  color: green;
+  color: #fff;
+  margin-inline-end: 1rem;
+  & .count {
+    position: absolute;
+    top: -0.5rem;
+    right: -1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #ccc;
+    border: 1px solid green;
+    padding: 0.2em 0.5em;
+    border-radius: 100%;
+    color: green;
+  }
 `;
 
 export const BackDrop = styled.div`

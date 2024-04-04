@@ -1,4 +1,3 @@
-import Search from "../Search";
 import { NavigationContainer, NavigationLink } from "./Navigation.styles";
 
 interface NavigationProps {
@@ -15,7 +14,6 @@ export default function Navigation({ open, linkClicked }: NavigationProps) {
       <NavigationLink to={"/contact"} onClick={linkClicked}>
         Contact
       </NavigationLink>
-      <Search />
     </NavigationContainer>
   );
 }

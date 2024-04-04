@@ -4,12 +4,26 @@ export const SearchContainer = styled.div`
   position: relative;
   overflow: visible;
   width: 300px;
+  transition: width 0.3s;
   input {
     padding: 1rem;
     border-radius: 0.5rem;
     border: none;
     width: 100%;
     font-size: 1rem;
+  }
+  &.expanded {
+    background-color: #444;
+    position: absolute;
+    z-index: 100;
+    width: 95%;
+    margin-inline: auto;
+    left: 0;
+    right: 0;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+    min-width: 50px;
   }
 `;
 

@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { IProduct } from "../../types/ProductTypes";
 import { ProductsContext } from "../../contexts/ProductsContext";
 import {
@@ -17,6 +17,15 @@ export default function Search() {
   const contextValue = useContext(ProductsContext);
   const backDropControls = useAnimation();
   const searchContainerControls = useAnimation();
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+
+  function handleInputFocus() {
+    searchContainerRef.current?.classList.add("expanded");
+  }
+
+  function handleInputBlur() {
+    searchContainerRef.current?.classList.remove("expanded");
+  }
 
   useEffect(() => {
     setProducts(contextValue?.products || []);
@@ -69,12 +78,14 @@ export default function Search() {
         transition={{ duration: 0.1 }}
         onClick={() => setSearchText("")}
       />
-      <SearchContainer>
+      <SearchContainer ref={searchContainerRef as any}>
         <input
           type="search"
           placeholder="Search..."
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
         />
 
         {searchResults.length > 0 && (

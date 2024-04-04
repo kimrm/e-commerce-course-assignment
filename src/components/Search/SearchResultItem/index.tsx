@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { IProduct } from "../../../types/ProductTypes";
 import { SearchResult, Tag, SearchResultItem } from "./index.styles";
+import PriceTag from "../../PriceTag";
 
 interface SearchResultItemProps {
   product: IProduct;
@@ -17,14 +18,17 @@ export default function index({ product, clicked }: SearchResultItemProps) {
         </div>
         <div>
           <h3>{title}</h3>
-          <p>{price}</p>
-          <p>{discountedPrice !== price && `Sale: ${discountedPrice}`}</p>
+          <PriceTag price={price} discount={discountedPrice} />
         </div>
       </SearchResultItem>
       <p>
-        Found in:{" "}
+        Found in:
         {tags.map((tag) => (
-          <Tag key={tag}>{tag} </Tag>
+          <Tag key={tag}>
+            <Link to={"/" + tag} onClick={clicked}>
+              {tag}
+            </Link>
+          </Tag>
         ))}
       </p>
     </SearchResult>

@@ -1,9 +1,16 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  h2 {
+    margin-block-start: 1rem;
+  }
+`;
+
 export const ProductTagSelect = styled.div`
   position: relative;
   tab-index: 0;
   display: block;
+  margin-block-start: 0.5rem;
   margin-block-end: 2rem;
   background-color: #333;
   border-radius: 15px;
@@ -32,6 +39,7 @@ export const ProductTagSelect = styled.div`
     height: 100%;
     color: #ccc;
     font-size: 1rem;
+    cursor: pointer;
   }
 `;
 

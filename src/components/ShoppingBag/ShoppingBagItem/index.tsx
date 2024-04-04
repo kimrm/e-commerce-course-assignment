@@ -42,11 +42,22 @@ export default function ShoppingBagItem(props: ShoppingBagItemProps) {
   return (
     <Row>
       <ShoppingBagItemContainer>
-        <input type="number" value={quantity} onChange={handleQuantityChange} />
-        <img src={item.productImage} alt={item.name} width={24} height={24} />
-        <span>{item.name}</span>
-        <span>{(item.price * item.quantity).toFixed(2)}</span>
-        <RemoveButton onClick={handleDeleteClick}>
+        <input
+          className="amount-input"
+          type="number"
+          value={quantity}
+          onChange={handleQuantityChange}
+        />
+        <img
+          className="image"
+          src={item.productImage}
+          alt={item.name}
+          width={24}
+          height={24}
+        />
+        <span className="name">{item.name}</span>
+        <span className="price">{(item.price * item.quantity).toFixed(2)}</span>
+        <RemoveButton className="remove-button" onClick={handleDeleteClick}>
           <svg
             fill="none"
             strokeWidth={1.5}

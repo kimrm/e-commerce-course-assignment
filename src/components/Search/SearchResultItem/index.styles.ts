@@ -4,7 +4,17 @@ import { Link } from "react-router-dom";
 export const Tag = styled.span`
   color: #aaa;
   font-weight: bold;
-  padding: 2px;
+  padding: 0.2rem 0.7rem;
+  background-color: #333;
+  border-radius: 5px;
+  margin-inline: 0.5rem;
+  &:hover {
+    background-color: #444;
+  }
+  a {
+    color: #aaa;
+    text-decoration: none;
+  }
 `;
 
 export const SearchResultItem = styled(Link)`
