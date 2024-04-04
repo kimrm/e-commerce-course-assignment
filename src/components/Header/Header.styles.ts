@@ -5,6 +5,7 @@ export const HeaderRow = styled.header`
   background-color: #222;
   color: white;
   position: fixed;
+  z-index: 1000;
   width: 100%;
 `;
 
