@@ -12,6 +12,15 @@ const theme = extendTheme({
         bg: "",
         color: "",
       },
+      input: {
+        color: "",
+      },
+      a: {
+        color: "",
+        textDecorationStyle: "dotted",
+        textUnderlineOffset: "0.3rem",
+        textDecoration: "underline",
+      },
     }),
   },
 });
