@@ -7,7 +7,6 @@ import {
   SearchResultItem,
 } from "./index.styles";
 import PriceTag from "../../PriceTag";
-import Tags from "../../Tags";
 
 interface SearchResultItemProps {
   product: IProduct;
