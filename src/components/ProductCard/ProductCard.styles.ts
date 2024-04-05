@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { colors } from "../../config/theme";
 
 export const NoReviews = styled.span`
-  color: #444;
+  color: ${colors.light};
 `;
 
 export const Description = styled.div`

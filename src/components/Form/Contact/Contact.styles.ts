@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { colors } from "../../../config/theme";
 
 export const FormField = styled.div`
   display: flex;
@@ -18,13 +19,16 @@ export const FormField = styled.div`
 
 export const SubmitButton = styled.button`
   padding: 0.5rem 2rem;
-  background-color: #007bff;
-  color: white;
+  background-color: ${colors.button.primary};
+  color: #222;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
   font-size: 1rem;
   font-weight: bold;
+  &:hover {
+    background-color: ${colors.button.light};
+  }
 `;
 
 export const LabelField = styled.div`
@@ -43,10 +47,10 @@ export const Input = styled.input`
 `;
 
 export const ValidationLabel = styled.span`
-  color: red;
+  color: #222;
   font-weight: bold;
   font-size: 0.8rem;
-  background-color: #ffefec;
+  background-color: ${colors.warning};
   padding: 0.2rem 0.5rem;
   border-radius: 5px;
 `;

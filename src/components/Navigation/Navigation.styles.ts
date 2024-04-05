@@ -24,8 +24,10 @@ export const NavigationContainer = styled.nav<{ open?: boolean }>`
 export const NavigationLink = styled(NavLink)`
   text-decoration: none;
   color: white;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
   &:hover {
-    text-decoration: underline;
+    background-color: #444;
   }
   &.active {
     font-weight: bold;

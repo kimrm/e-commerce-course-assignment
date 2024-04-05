@@ -1,0 +1,21 @@
+export const colors = {
+  lightGreen: "#9CFF95",
+  darkGreen: "#5ECC52",
+  light: "#cccccc",
+  gray: "#444444",
+  darkGray: "#333333",
+  borderGray: "#cccccc",
+  info: "#5E95FF",
+  infoDark: "#3A6FCC",
+  warning: "#FFC95E",
+  button: {
+    primary: "#5ECC52",
+    secondary: "#9CFF95",
+    danger: "#FF5E5E",
+    warning: "#FFC95E",
+    success: "#5ECC52",
+    info: "#5E95FF",
+    light: "#9CFF95",
+    dark: "#5ECC52",
+  },
+};

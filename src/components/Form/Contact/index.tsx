@@ -63,7 +63,7 @@ export default function Contact(props: ContactProps) {
             </ValidationLabel>
           )}
         </LabelField>
-        <input {...register("name", { required: true })} />
+        <input title="Name" {...register("name", { required: true })} />
       </FormField>
       <FormField>
         <LabelField>
@@ -87,7 +87,7 @@ export default function Contact(props: ContactProps) {
             </ValidationLabel>
           )}
         </LabelField>
-        <input {...register("email", { required: true })} />
+        <input title="E-mail" {...register("email", { required: true })} />
       </FormField>
       <FormField>
         <LabelField>
@@ -111,7 +111,11 @@ export default function Contact(props: ContactProps) {
             </ValidationLabel>
           )}
         </LabelField>
-        <textarea rows={5} {...register("message", { required: true })} />
+        <textarea
+          title="Message"
+          rows={5}
+          {...register("message", { required: true })}
+        />
       </FormField>
       <SubmitButton>Send</SubmitButton>
     </motion.form>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../config/theme";
 
 export const PriceStyle = styled.span`
   font-size: 1.4rem;
@@ -10,7 +11,7 @@ export const PriceStyle = styled.span`
 `;
 
 export const DiscountStyle = styled.span`
-  color: green;
+  color: ${colors.lightGreen};
   background-color: #222;
   padding: 0.2rem;
   border-radius: 5px;

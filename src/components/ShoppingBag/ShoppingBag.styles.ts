@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { colors } from "../../config/theme";
 
 export const ShoppingBagContainer = styled.div`
   position: relative;
@@ -64,11 +65,11 @@ export const ShoppingBagButton = styled.button`
     right: -1rem;
     font-size: 1rem;
     font-weight: bold;
-    background-color: #ccc;
-    border: 1px solid green;
+    background-color: #fff;
+    border: 1px solid ${colors.info};
     padding: 0.2em 0.5em;
     border-radius: 100%;
-    color: green;
+    color: ${colors.infoDark};
   }
 `;
 

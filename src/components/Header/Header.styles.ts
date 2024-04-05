@@ -10,15 +10,15 @@ export const HeaderRow = styled.header`
 `;
 
 export const HeaderContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  justify-content: space-between;
+  gap: 2rem;
   padding: 2rem;
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
   height: 100px;
-  display: grid;
-  grid-template-columns: auto 1fr 1fr auto;
-  justify-content: space-between;
-  gap: 1rem;
   align-items: center;
   @media (max-width: 768px) {
     grid-template-columns: auto auto auto;

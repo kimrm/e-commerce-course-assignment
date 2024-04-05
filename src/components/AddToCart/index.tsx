@@ -18,6 +18,7 @@ export default function AddToCart(props: AddToCartProps) {
         type="number"
         inputMode="numeric"
         pattern="[1-9]\d*"
+        aria-label="Quantity of items to add to cart"
         placeholder="1"
         value={quantity}
         min={1}

@@ -37,7 +37,7 @@ export default function ProductCard(props: IProductCardProps) {
       animate={{ opacity: 1, y: 0 }}
     >
       <Link to={`/product/${product.id}`}>
-        <Image src={product.image.url} alt={product.image.alt} />
+        <Image src={product.image.url} alt={product.title} />
       </Link>
       <CardLink to={`/product/${product.id}`}>
         <h2>{product.title}</h2>

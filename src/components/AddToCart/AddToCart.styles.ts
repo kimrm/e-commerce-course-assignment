@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { colors } from "../../config/theme";
 
 const AddToCartContainer = styled.div`
   display: grid;
@@ -8,9 +9,9 @@ const AddToCartContainer = styled.div`
 `;
 
 const AddToCartButton = styled.button`
-  background-color: #24b90c;
+  background-color: ${colors.button.primary};
   color: #000;
-  border: #444 solid 1px;
+  border: ${colors.gray} solid 1px;
   height: 2.5rem;
   font-size: 0.8rem;
   font-weight: bold;
@@ -20,14 +21,14 @@ const AddToCartButton = styled.button`
   cursor: pointer;
   width: 100%;
   &:hover {
-    background-color: #4ae931;
+    background-color: ${colors.button.light};
   }
 `;
 
 const AddToCartInput = styled.input`
   padding: 0.5rem;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid ${colors.borderGray};
   width: 50px;
   font-size: 1rem;
 `;

@@ -20,12 +20,12 @@ export default function Header() {
   return (
     <HeaderRow>
       <HeaderContainer>
-        <LogoLink to="/">S-A-L</LogoLink>
-        <Navigation open={menuOpen} linkClicked={handleLinkClicked} />
+        <LogoLink to="/">shopalot</LogoLink>
         <Search />
+        <Navigation open={menuOpen} linkClicked={handleLinkClicked} />
         <NavRight>
           <ShoppingBag />
-          <MenuButton onClick={handleMenuButtonClicked}>
+          <MenuButton onClick={handleMenuButtonClicked} aria-label="Menu">
             <svg
               fill="none"
               strokeWidth={1.5}

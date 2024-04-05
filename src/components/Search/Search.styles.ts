@@ -1,25 +1,56 @@
 import styled from "styled-components";
+import { colors } from "../../config/theme";
 
 export const SearchContainer = styled.div`
+  display: block;
   position: relative;
   overflow: visible;
-  width: 300px;
   transition: width 0.3s;
+  item-align: center;
+  justify-content: center;
+  background-color: ${colors.gray};
+  border-radius: 0.5rem;
+  svg {
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    top: 35%;
+    left: 1rem;
+    @media (max-width: 768px) {
+      margin: auto;
+    }
+  }
   input {
+    background-color: ${colors.gray};
+    color: white;
     padding: 1rem;
+    padding-inline-start: 3rem;
     border-radius: 0.5rem;
     border: none;
     width: 100%;
     font-size: 1rem;
+    font-weight: bold;
+    &:focus {
+      background-color: ${colors.darkGray};
+    }
+    @media (max-width: 768px) {
+      &::placeholder {
+        color: transparent;
+      }
+    }
   }
   &.expanded {
-    background-color: #444;
-    position: absolute;
+    display: block;
+    position: relative;
     z-index: 100;
-    width: 95%;
-    margin-inline: auto;
-    left: 0;
-    right: 0;
+    @media (max-width: 768px) {
+      position: absolute;
+      width: 95%;
+      margin-inline: auto;
+      top: 32px;
+      left: 0;
+      right: 0;
+    }
   }
   @media (max-width: 768px) {
     width: 100%;
@@ -34,7 +65,7 @@ export const SearchResultsContainer = styled.div`
 export const SearchResult = styled.div`
   position: absolute;
   z-index: 100;
-  background-color: #444;
+  background-color: ${colors.gray};
   padding: 1rem;
   height: 80vh;
   overflow-y: auto;
