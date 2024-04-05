@@ -77,6 +77,14 @@ export const SearchResult = styled.div`
     padding: 0;
     margin: 0;
   }
+  @media (max-width: 768px) {
+    position: absolute;
+    width: 90%;
+    margin-inline: auto;
+    top: 6rem;
+    left: 0;
+    right: 0;
+  }
 `;
 
 export const BackDrop = styled.div`
