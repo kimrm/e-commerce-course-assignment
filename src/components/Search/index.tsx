@@ -117,29 +117,28 @@ export default function Search() {
           onChange={(e) => setSearchText(e.target.value)}
           ref={searchInputRef as any}
         />
-
-        {searchResults.length > 0 && (
-          <SearchResultsContainer
-            as={motion.div}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={searchContainerControls}
-            transition={{ duration: 0.3 }}
-          >
-            <SearchResult>
-              <p>{searchResults.length} results found</p>
-              <ul>
-                {searchResults.map((product) => (
-                  <SearchResultItem
-                    key={product.id}
-                    product={product}
-                    clicked={() => setSearchText("")}
-                  />
-                ))}
-              </ul>
-            </SearchResult>
-          </SearchResultsContainer>
-        )}
       </SearchContainer>
+      {searchResults.length > 0 && (
+        <SearchResultsContainer
+          as={motion.div}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={searchContainerControls}
+          transition={{ duration: 0.3 }}
+        >
+          <SearchResult>
+            <p>{searchResults.length} results found</p>
+            <ul>
+              {searchResults.map((product) => (
+                <SearchResultItem
+                  key={product.id}
+                  product={product}
+                  clicked={() => setSearchText("")}
+                />
+              ))}
+            </ul>
+          </SearchResult>
+        </SearchResultsContainer>
+      )}
     </>
   );
 }

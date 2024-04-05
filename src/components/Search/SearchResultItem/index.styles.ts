@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+export const TagsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 export const Tag = styled.span`
   color: #aaa;
   font-weight: bold;

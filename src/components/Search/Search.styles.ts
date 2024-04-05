@@ -60,30 +60,26 @@ export const SearchContainer = styled.div`
 
 export const SearchResultsContainer = styled.div`
   overflow: hidden;
+  width: 100%;
+  position: absolute;
+
+  top: 6rem;
+  left: 0;
 `;
 
 export const SearchResult = styled.div`
-  position: absolute;
   z-index: 100;
   background-color: ${colors.gray};
   padding: 1rem;
-  height: 80vh;
+  max-height: 80vh;
   overflow-y: auto;
-  min-width: 400px;
-  max-width: 100%;
   border-radius: 0.5rem;
+  margin-inline: auto;
+  max-width: 1080px;
   & ul {
     list-style: none;
     padding: 0;
     margin: 0;
-  }
-  @media (max-width: 768px) {
-    position: absolute;
-    width: 90%;
-    margin-inline: auto;
-    top: 6rem;
-    left: 0;
-    right: 0;
   }
 `;
 

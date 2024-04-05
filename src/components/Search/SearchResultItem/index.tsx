@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import { IProduct } from "../../../types/ProductTypes";
-import { SearchResult, Tag, SearchResultItem } from "./index.styles";
+import {
+  SearchResult,
+  Tag,
+  TagsContainer,
+  SearchResultItem,
+} from "./index.styles";
 import PriceTag from "../../PriceTag";
+import Tags from "../../Tags";
 
 interface SearchResultItemProps {
   product: IProduct;
@@ -21,8 +27,8 @@ export default function index({ product, clicked }: SearchResultItemProps) {
           <PriceTag price={price} discount={discountedPrice} />
         </div>
       </SearchResultItem>
-      <p>
-        Found in:
+
+      <TagsContainer>
         {tags.map((tag) => (
           <Tag key={tag}>
             <Link to={"/" + tag} onClick={clicked}>
@@ -30,7 +36,7 @@ export default function index({ product, clicked }: SearchResultItemProps) {
             </Link>
           </Tag>
         ))}
-      </p>
+      </TagsContainer>
     </SearchResult>
   );
 }
