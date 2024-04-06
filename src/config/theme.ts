@@ -8,6 +8,7 @@ export const colors = {
   info: "#5E95FF",
   infoDark: "#3A6FCC",
   warning: "#FFC95E",
+  danger: "#FF5E5E",
   button: {
     primary: "#5ECC52",
     secondary: "#9CFF95",

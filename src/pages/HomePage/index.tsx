@@ -11,7 +11,7 @@ export default function HomePage() {
         <h1>Your one-stop shop for all things amazing</h1>
         <p>
           Browse our catalogue of amazing products. We have everything you need
-          from hair dryers and headphones to perfume.
+          from hair dryers and headphones to perfume and shampoo.
         </p>
       </section>
       <section>

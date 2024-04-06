@@ -13,7 +13,7 @@ export const HeaderContainer = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto auto;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
   padding: 2rem;
   max-width: 1400px;
   margin: 0 auto;
@@ -30,12 +30,11 @@ export const LogoLink = styled(Link)`
   font-weight: bold;
   text-decoration: none;
   color: white;
-  margin-right: 1rem;
   &:hover {
     color: #61dafb;
   }
   @media (max-width: 500px) {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 `;
 

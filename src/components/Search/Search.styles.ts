@@ -23,7 +23,7 @@ export const SearchContainer = styled.div`
   input {
     background-color: ${colors.gray};
     color: white;
-    padding: 1rem;
+    padding: 0.7rem;
     padding-inline-start: 3rem;
     border-radius: 0.5rem;
     border: none;
@@ -47,7 +47,7 @@ export const SearchContainer = styled.div`
       position: absolute;
       width: 95%;
       margin-inline: auto;
-      top: 32px;
+      top: 31px;
       left: 0;
       right: 0;
     }

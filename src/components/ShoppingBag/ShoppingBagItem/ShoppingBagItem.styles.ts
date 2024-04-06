@@ -17,6 +17,9 @@ export const ShoppingBagItemContainer = styled.div`
     grid-area: name;
   }
   & .price {
+    &::before {
+      content: "$";
+    }
     grid-area: price;
   }
   & .remove-button {

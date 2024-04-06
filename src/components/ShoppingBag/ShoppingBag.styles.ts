@@ -25,19 +25,19 @@ export const ShoppingBagPopup = styled.div`
   .link {
     display: block;
     margin-bottom: 1rem;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: bold;
     width: 100%;
     padding: 1rem;
     text-decoration: none;
     justify-content: center;
     text-align: center;
-    background-color: green;
-    color: white;
+    background-color: ${colors.button.primary};
+    color: #222;
     border-radius: 15px;
     cursor: pointer;
     &:hover {
-      background-color: darkgreen;
+      background-color: ${colors.button.light};
     }
   }
   .total {

@@ -107,6 +107,7 @@ export default function ShoppingBag() {
               Go to Checkout
             </Link>
             <h3>Your Cart</h3>
+            {bagItems.length === 0 && <p>Your cart is empty</p>}
             {bagItems.map((item) => (
               <ShoppingBagItem key={item.id} item={item} />
             ))}

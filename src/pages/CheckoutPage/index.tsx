@@ -5,6 +5,9 @@ import useCartTotal from "../../hooks/useCartTotal";
 import { styled } from "styled-components";
 import CheckoutRow from "../../components/CheckoutRow";
 import { IShoppingBagItem } from "../../types/ShoppingBagTypes";
+import { colors } from "../../config/theme";
+import DeliveryDetails from "../../components/Form/DeliveryDetails";
+import ScrollToTop from "../../components/ScrollToTop";
 
 const List = styled.ul`
   list-style: none;
@@ -23,31 +26,46 @@ const LinkStyled = styled(Link)`
   }
 `;
 
+const NextButton = styled.button`
+  background-color: ${colors.button.primary};
+  color: #222;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${colors.button.light};
+  }
+`;
+
 function CheckOutSuccessPage() {
   return (
-    <div>
-      <h1>Order placed successfully</h1>
-      <p>Thank you for shopping with us.</p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic explicabo
-        laborum temporibus ex, perferendis, architecto impedit commodi illum
-        autem ut velit voluptatem molestias nesciunt. Eius labore aperiam nulla
-        dolorem animi!
-      </p>
-      <h2>Next steps</h2>
-      <ul>
-        <ListItem>
-          <LinkStyled as={Link} to="/">
-            Shop for more products
-          </LinkStyled>
-        </ListItem>
-        <ListItem>
-          <LinkStyled as={Link} to="/contact">
-            Contact us for questions about your order
-          </LinkStyled>
-        </ListItem>
-      </ul>
-    </div>
+    <>
+      <ScrollToTop />
+      <div>
+        <h1>Order placed successfully</h1>
+        <p>Thank you for shopping with us.</p>
+        <p>
+          Your order is processed and we will contact you shortly to confirm the
+          order and delivery details.
+        </p>
+        <h2>Next steps</h2>
+        <List>
+          <ListItem>
+            <LinkStyled as={Link} to="/">
+              Continue shopping
+            </LinkStyled>
+          </ListItem>
+          <ListItem>
+            <LinkStyled as={Link} to="/contact">
+              Contact us for questions about your order
+            </LinkStyled>
+          </ListItem>
+        </List>
+      </div>
+    </>
   );
 }
 
@@ -57,7 +75,12 @@ export default function CheckoutPage() {
   const updateItemInBag = useStore((state) => state.updateItemInBag);
   const clearBag = useStore((state) => state.clearBag);
   const total = useCartTotal();
+  const [deliveryDetailsActive, setDeliveryDetailsActive] = useState(false);
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
+
+  function goToDeliveryDetails() {
+    setDeliveryDetailsActive(true);
+  }
 
   function checkOutOrder() {
     clearBag();
@@ -66,6 +89,10 @@ export default function CheckoutPage() {
 
   if (isOrderPlaced) {
     return <CheckOutSuccessPage />;
+  }
+
+  if (deliveryDetailsActive) {
+    return <DeliveryDetails onSuccess={checkOutOrder} />;
   }
 
   function handleUpdateQuantity(item: IShoppingBagItem, newQuantity: number) {
@@ -78,8 +105,9 @@ export default function CheckoutPage() {
 
   return (
     <div>
+      <ScrollToTop />
       <h1>Order checkout</h1>
-      <p>Here's the content of your shopping cart. </p>
+      <p>Review your cart and go to delivery to complete the checkout. </p>
       <List>
         {bagItems.map((item) => (
           <li key={item.id}>
@@ -93,27 +121,33 @@ export default function CheckoutPage() {
           </li>
         ))}
       </List>
-      <div>Cart total: {total.toFixed(2)}</div>
       <div
         style={{
           display: "flex",
           justifyContent: "flex-end",
+          alignItems: "center",
           marginTop: "1rem",
+          fontSize: "1.5rem",
+          fontWeight: "bold",
         }}
       >
-        <button
-          onClick={checkOutOrder}
+        <span
           style={{
-            backgroundColor: "green",
-            color: "white",
-            padding: "1rem",
-            borderRadius: 5,
-            border: "none",
-            cursor: "pointer",
+            marginRight: "1rem",
+            fontSize: "0.9rem",
+            color: "#aaa",
+            fontWeight: "normal",
           }}
         >
-          Place Your Order
-        </button>
+          {" "}
+          Order total:
+        </span>{" "}
+        ${total.toFixed(2)}
+      </div>
+      <div>
+        <NextButton onClick={goToDeliveryDetails}>
+          Go to delivery details
+        </NextButton>
       </div>
     </div>
   );

@@ -6,14 +6,18 @@ import {
   LabelField,
   SubmitButton,
   ValidationLabel,
-} from "./Contact.styles";
+} from "../Form.styles";
 import { motion } from "framer-motion";
 
 const schema = yup
   .object({
-    name: yup.string().required("Please enter your name."),
-    email: yup.string().email().required("We need your e-mail to contact you."),
-    message: yup.string().required("Please enter a message."),
+    name: yup.string().required("Please enter your name.").min(3),
+    email: yup
+      .string()
+      .email()
+      .required("Please provide a valid e-mail address."),
+    subject: yup.string().required("Please enter a subject.").min(3),
+    message: yup.string().required("Please enter a message.").min(3),
   })
   .required();
 
@@ -44,78 +48,102 @@ export default function Contact(props: ContactProps) {
       <FormField>
         <LabelField>
           <label htmlFor="name">Name</label>
-          {errors.name && (
-            <ValidationLabel
-              as={motion.span}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                type: "spring",
-                damping: 10,
-                stiffness: 1000,
-                duration: 0.1,
-              }}
-            >
-              {errors.name?.message}
-            </ValidationLabel>
-          )}
         </LabelField>
         <input title="Name" {...register("name", { required: true })} />
+        {errors.name && (
+          <ValidationLabel
+            as={motion.span}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              type: "spring",
+              damping: 10,
+              stiffness: 1000,
+              duration: 0.1,
+            }}
+          >
+            {errors.name?.message}
+          </ValidationLabel>
+        )}
       </FormField>
       <FormField>
         <LabelField>
-          <label htmlFor="name">E-mail</label>
-          {errors.email && (
-            <ValidationLabel
-              as={motion.span}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                type: "spring",
-                damping: 10,
-                stiffness: 1000,
-                duration: 0.1,
-              }}
-            >
-              {errors.email?.message}
-            </ValidationLabel>
-          )}
+          <label htmlFor="email">E-mail</label>
         </LabelField>
         <input title="E-mail" {...register("email", { required: true })} />
+        {errors.email && (
+          <ValidationLabel
+            as={motion.span}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              type: "spring",
+              damping: 10,
+              stiffness: 1000,
+              duration: 0.1,
+            }}
+          >
+            {errors.email?.message}
+          </ValidationLabel>
+        )}
       </FormField>
       <FormField>
         <LabelField>
-          <label htmlFor="name">Message</label>
-          {errors.message && (
-            <ValidationLabel
-              as={motion.span}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                type: "spring",
-                damping: 10,
-                stiffness: 1000,
-                duration: 0.1,
-              }}
-            >
-              {errors.message?.message}
-            </ValidationLabel>
-          )}
+          <label htmlFor="subject">Subject</label>
+        </LabelField>
+        <input title="Subject" {...register("subject", { required: true })} />
+        {errors.subject && (
+          <ValidationLabel
+            as={motion.span}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              type: "spring",
+              damping: 10,
+              stiffness: 1000,
+              duration: 0.1,
+            }}
+          >
+            {errors.subject?.message}
+          </ValidationLabel>
+        )}
+      </FormField>
+      <FormField>
+        <LabelField>
+          <label htmlFor="message">Message</label>
         </LabelField>
         <textarea
           title="Message"
           rows={5}
           {...register("message", { required: true })}
         />
+        {errors.message && (
+          <ValidationLabel
+            as={motion.span}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              type: "spring",
+              damping: 10,
+              stiffness: 1000,
+              duration: 0.1,
+            }}
+          >
+            {errors.message?.message}
+          </ValidationLabel>
+        )}
       </FormField>
       <SubmitButton>Send</SubmitButton>
     </motion.form>
