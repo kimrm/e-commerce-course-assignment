@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useStore } from "../../store/store";
-import useCartTotal from "../../hooks/useCartTotal";
 import { styled } from "styled-components";
-import CheckoutRow from "../../components/CheckoutRow";
 import { ICartItem } from "../../types/CartTypes";
 import { colors } from "../../config/theme";
+import useCartTotal from "../../hooks/useCartTotal";
+import CheckoutRow from "../../components/CheckoutRow";
 import DeliveryDetails from "../../components/Form/DeliveryDetails";
 import ScrollToTop from "../../components/ScrollToTop";
 
@@ -107,8 +107,13 @@ export default function CheckoutPage() {
   return (
     <div>
       <ScrollToTop />
-      <h1>Order checkout</h1>
-      <p>Review your cart and go to delivery to complete the checkout. </p>
+      <h1>Cart checkout</h1>
+      {cartItems.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <p>Review your cart and go to delivery to complete the checkout. </p>
+      )}
+
       <List>
         {cartItems.map((item) => (
           <li key={item.id}>
@@ -122,32 +127,36 @@ export default function CheckoutPage() {
           </li>
         ))}
       </List>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          marginTop: "1rem",
-          fontSize: "1.5rem",
-          fontWeight: "bold",
-        }}
-      >
-        <span
-          style={{
-            marginRight: "1rem",
-            fontSize: "0.9rem",
-            color: "#aaa",
-            fontWeight: "normal",
-          }}
-        >
-          {" "}
-          Order total:
-        </span>{" "}
-        ${total.toFixed(2)}
-      </div>
-      <NextButton onClick={goToDeliveryDetails}>
-        Go to delivery details
-      </NextButton>
+      {cartItems.length > 0 && (
+        <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              marginTop: "1rem",
+              fontSize: "1.5rem",
+              fontWeight: "bold",
+            }}
+          >
+            <span
+              style={{
+                marginRight: "1rem",
+                fontSize: "0.9rem",
+                color: "#aaa",
+                fontWeight: "normal",
+              }}
+            >
+              {" "}
+              Order total:
+            </span>{" "}
+            ${total.toFixed(2)}
+          </div>
+          <NextButton onClick={goToDeliveryDetails}>
+            Go to delivery details
+          </NextButton>
+        </div>
+      )}
     </div>
   );
 }

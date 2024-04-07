@@ -36,6 +36,13 @@ export default function AddToCart(props: AddToCartProps) {
       animationControls.start("initial");
     }
   }, [displayNotification]);
+
+  function handleAddToCart() {
+    if (isNaN(parseInt(quantity)) || parseInt(quantity) < 1) {
+      return;
+    }
+    itemAdded(parseInt(quantity));
+  }
   return (
     <AddToCartContainer>
       <AddToCartInput
@@ -55,9 +62,7 @@ export default function AddToCart(props: AddToCartProps) {
         initial="initial"
         whileHover={displayNotification ? "disabledHover" : "hover"}
         animate={animationControls}
-        onClick={() => {
-          itemAdded(isNaN(parseInt(quantity)) ? 1 : parseInt(quantity));
-        }}
+        onClick={handleAddToCart}
         title="Add to cart"
       >
         {displayNotification ? "Item added" : "Add to cart"}
