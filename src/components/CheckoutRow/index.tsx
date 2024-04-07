@@ -1,12 +1,12 @@
-import { IShoppingBagItem } from "../../types/ShoppingBagTypes";
+import { ICartItem } from "../../types/CartTypes";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Container } from "./index.style";
 
 interface CheckoutRowProps {
-  item: IShoppingBagItem;
-  handleRemoveItem: (item: IShoppingBagItem) => void;
-  handleUpdateQuantity: (item: IShoppingBagItem, quantity: number) => void;
+  item: ICartItem;
+  handleRemoveItem: (item: ICartItem) => void;
+  handleUpdateQuantity: (item: ICartItem, quantity: number) => void;
 }
 
 export default function CheckoutRow({
@@ -28,8 +28,6 @@ export default function CheckoutRow({
       : parseInt(event.target.value);
 
     setQuantity(newValue);
-
-    console.log("Updating item in shopping bag", item, newValue);
 
     handleUpdateQuantity(item, newValue);
   }
@@ -82,7 +80,7 @@ export default function CheckoutRow({
       <button
         id="remove"
         onClick={handleRemoveItemClick}
-        aria-label="Remove item from shopping bag"
+        aria-label="Remove item from shopping cart"
       >
         <svg
           fill="none"

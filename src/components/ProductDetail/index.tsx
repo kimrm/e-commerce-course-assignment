@@ -6,7 +6,7 @@ import usePageTitle from "../../hooks/usePageTitle";
 import useReviews from "../../hooks/useReviews";
 import { useStore } from "../../store/store";
 import { IProduct } from "../../types/ProductTypes";
-import { IShoppingBagItem } from "../../types/ShoppingBagTypes";
+import { ICartItem } from "../../types/CartTypes";
 import AddToCart from "../AddToCart";
 import Image from "../Image";
 import PriceTag from "../PriceTag";
@@ -23,7 +23,7 @@ export default function ProductDetail() {
   const { productId } = useParams<string>();
   const [product, setProduct] = useState<IProduct | null>(null);
   const [notify, setNotify] = useState(false);
-  const addItemToBag = useStore((state) => state.addItemToBag);
+  const addItemToCart = useStore((state) => state.addItemToCart);
 
   usePageTitle(product?.title + " | Shop-a-lot");
   const productsContext = useContext(ProductsContext);
@@ -49,7 +49,7 @@ export default function ProductDetail() {
   }, [productId]);
 
   function handleAddToCart(quantity: number = 1) {
-    const item: IShoppingBagItem = {
+    const item: ICartItem = {
       id: product?.id ?? "",
       name: product?.title ?? "",
       price:
@@ -60,7 +60,7 @@ export default function ProductDetail() {
       productImage: product?.image?.url,
     };
     if (product) {
-      addItemToBag(item);
+      addItemToCart(item);
     }
     setNotify(true);
   }

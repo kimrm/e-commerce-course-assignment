@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { colors } from "../../../config/theme";
 
-export const ShoppingBagItemContainer = styled.div`
+export const CartItemContainer = styled.div`
   display: grid;
   grid-template-columns: auto 1fr 1fr 1fr auto;
   grid-template-areas: "image name price amount remove";

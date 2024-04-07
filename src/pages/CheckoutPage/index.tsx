@@ -4,7 +4,7 @@ import { useStore } from "../../store/store";
 import useCartTotal from "../../hooks/useCartTotal";
 import { styled } from "styled-components";
 import CheckoutRow from "../../components/CheckoutRow";
-import { IShoppingBagItem } from "../../types/ShoppingBagTypes";
+import { ICartItem } from "../../types/CartTypes";
 import { colors } from "../../config/theme";
 import DeliveryDetails from "../../components/Form/DeliveryDetails";
 import ScrollToTop from "../../components/ScrollToTop";
@@ -71,10 +71,10 @@ function CheckOutSuccessPage() {
 }
 
 export default function CheckoutPage() {
-  const bagItems = useStore((state) => state.bagItems);
-  const removeItemFromBag = useStore((state) => state.removeItemFromBag);
-  const updateItemInBag = useStore((state) => state.updateItemInBag);
-  const clearBag = useStore((state) => state.clearBag);
+  const cartItems = useStore((state) => state.cartItems);
+  const removeItemFromCart = useStore((state) => state.removeItemFromCart);
+  const updateItemInCart = useStore((state) => state.updateItemInCart);
+  const clearCart = useStore((state) => state.clearCart);
   const total = useCartTotal();
   const [deliveryDetailsActive, setDeliveryDetailsActive] = useState(false);
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
@@ -84,7 +84,7 @@ export default function CheckoutPage() {
   }
 
   function checkOutOrder() {
-    clearBag();
+    clearCart();
     setIsOrderPlaced(true);
   }
 
@@ -96,12 +96,12 @@ export default function CheckoutPage() {
     return <DeliveryDetails onSuccess={checkOutOrder} />;
   }
 
-  function handleUpdateQuantity(item: IShoppingBagItem, newQuantity: number) {
-    const newItem: IShoppingBagItem = {
+  function handleUpdateQuantity(item: ICartItem, newQuantity: number) {
+    const newItem: ICartItem = {
       ...item,
       quantity: newQuantity,
     };
-    updateItemInBag(newItem);
+    updateItemInCart(newItem);
   }
 
   return (
@@ -110,11 +110,11 @@ export default function CheckoutPage() {
       <h1>Order checkout</h1>
       <p>Review your cart and go to delivery to complete the checkout. </p>
       <List>
-        {bagItems.map((item) => (
+        {cartItems.map((item) => (
           <li key={item.id}>
             <CheckoutRow
               item={item}
-              handleRemoveItem={() => removeItemFromBag(item)}
+              handleRemoveItem={() => removeItemFromCart(item)}
               handleUpdateQuantity={(item, quantity) =>
                 handleUpdateQuantity(item, quantity)
               }

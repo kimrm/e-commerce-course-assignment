@@ -1,21 +1,17 @@
 import { useState } from "react";
-import { IShoppingBagItem } from "../../../types/ShoppingBagTypes";
-import {
-  ShoppingBagItemContainer,
-  Row,
-  RemoveButton,
-} from "./ShoppingBagItem.styles";
+import { ICartItem } from "../../../types/CartTypes";
+import { CartItemContainer, Row, RemoveButton } from "./index.styles";
 import { useStore } from "../../../store/store";
 
-type ShoppingBagItemProps = {
-  item: IShoppingBagItem;
+type CartItemProps = {
+  item: ICartItem;
 };
 
-export default function ShoppingBagItem(props: ShoppingBagItemProps) {
+export default function CartItem(props: CartItemProps) {
   const { item } = props;
   const [quantity, setQuantity] = useState(item.quantity);
-  const updateItemInBag = useStore((state) => state.updateItemInBag);
-  const removeItemFromBag = useStore((state) => state.removeItemFromBag);
+  const updateItemInCart = useStore((state) => state.updateItemInCart);
+  const removeItemFromCart = useStore((state) => state.removeItemFromCart);
 
   function handleQuantityChange(e: React.ChangeEvent<HTMLInputElement>) {
     const newValue: number = isNaN(parseInt(e.target.value))
@@ -25,23 +21,22 @@ export default function ShoppingBagItem(props: ShoppingBagItemProps) {
     setQuantity(newValue);
 
     if (newValue !== item.quantity) {
-      console.log("Updating item in shopping bag");
-      const newItem: IShoppingBagItem = {
+      const newItem: ICartItem = {
         ...item,
         quantity: newValue,
       };
-      console.log("New item ", newItem);
-      updateItemInBag(newItem);
+
+      updateItemInCart(newItem);
     }
   }
 
   function handleDeleteClick() {
-    removeItemFromBag(item);
+    removeItemFromCart(item);
   }
 
   return (
     <Row>
-      <ShoppingBagItemContainer>
+      <CartItemContainer>
         <input
           className="amount-input"
           type="number"
@@ -73,7 +68,7 @@ export default function ShoppingBagItem(props: ShoppingBagItemProps) {
             />
           </svg>
         </RemoveButton>
-      </ShoppingBagItemContainer>
+      </CartItemContainer>
     </Row>
   );
 }

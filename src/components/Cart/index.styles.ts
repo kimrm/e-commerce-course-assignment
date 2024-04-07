@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { colors } from "../../config/theme";
 
-export const ShoppingBagContainer = styled.div`
+export const CartContainer = styled.div`
   position: relative;
   scroll: auto;
   @media (max-width: 600px) {
@@ -9,7 +9,7 @@ export const ShoppingBagContainer = styled.div`
   }
 `;
 
-export const ShoppingBagPopup = styled.div`
+export const CartPopup = styled.div`
   overflow: auto;
   position: absolute;
   top: 100%;
@@ -50,7 +50,7 @@ export const ShoppingBagPopup = styled.div`
   }
 `;
 
-export const ShoppingBagButton = styled.button`
+export const CartButton = styled.button`
   --count-background-color: #fff;
   --count-color: ${colors.infoDark};
   position: relative;

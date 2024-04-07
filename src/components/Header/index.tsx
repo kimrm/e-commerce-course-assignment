@@ -7,7 +7,7 @@ import {
   NavRight,
 } from "./Header.styles";
 import Navigation from "../Navigation";
-import ShoppingBag from "../ShoppingBag";
+import Cart from "../Cart";
 import Search from "../Search";
 
 export default function Header() {
@@ -24,7 +24,7 @@ export default function Header() {
         <Search />
         <Navigation open={menuOpen} linkClicked={handleLinkClicked} />
         <NavRight>
-          <ShoppingBag />
+          <Cart />
           <MenuButton onClick={handleMenuButtonClicked} aria-label="Menu">
             {menuOpen ? (
               <svg

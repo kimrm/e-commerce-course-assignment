@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useStore } from "../../store/store";
 import { IProduct } from "../../types/ProductTypes";
-import { IShoppingBagItem } from "../../types/ShoppingBagTypes";
+import { ICartItem } from "../../types/CartTypes";
 import { ProductsList } from "./ProductsIndex.styles";
 import { ProductsContext } from "../../contexts/ProductsContext";
 import { Status } from "../../types/ContextTypes";
@@ -19,7 +19,7 @@ export default function ProductsIndex({ tag }: Props) {
   );
   const [displayLoader, setDisplayLoader] = useState<boolean>(false);
 
-  const addItemToBag = useStore((state) => state.addItemToBag);
+  const addItemToCart = useStore((state) => state.addItemToCart);
 
   useEffect(() => {
     if (tag) {
@@ -47,7 +47,7 @@ export default function ProductsIndex({ tag }: Props) {
   }, [state]);
 
   function handleAddToCart(product: IProduct, quantity: number = 1) {
-    const item: IShoppingBagItem = {
+    const item: ICartItem = {
       id: product.id,
       name: product.title,
       price:
@@ -57,7 +57,7 @@ export default function ProductsIndex({ tag }: Props) {
       quantity: quantity,
       productImage: product.image?.url,
     };
-    addItemToBag(item);
+    addItemToCart(item);
   }
   if (displayLoader) {
     return <div>Fetching our products catalogue. Please hold on...</div>;

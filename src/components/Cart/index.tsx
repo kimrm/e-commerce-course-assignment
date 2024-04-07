@@ -1,37 +1,32 @@
 import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import {
-  ShoppingBagButton,
-  ShoppingBagContainer,
-  ShoppingBagPopup,
-  BackDrop,
-} from "./ShoppingBag.styles";
-import ShoppingBagItem from "./ShoppingBagItem";
+import { CartButton, CartContainer, CartPopup, BackDrop } from "./index.styles";
+import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import { useStore } from "../../store/store";
 import useCartTotal from "../../hooks/useCartTotal";
 
-export default function ShoppingBag() {
+export default function Cart() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const controls = useAnimation();
   const backDropControls = useAnimation();
-  const bagItems = useStore((state) => state.bagItems);
+  const cartItems = useStore((state) => state.cartItems);
   const total = useCartTotal();
 
   useEffect(() => {
-    const count = bagItems.reduce((acc, curr) => {
+    const count = cartItems.reduce((acc, curr) => {
       return acc + curr.quantity;
     }, 0);
     setCartCount(count);
-  }, [bagItems]);
+  }, [cartItems]);
 
   useEffect(() => {
     controls.start({
       opacity: 1,
       scale: [0.5, 1],
     });
-  }, [bagItems, controls]);
+  }, [cartItems, controls]);
 
   function handleButtonClick() {
     setIsPopupVisible((prev) => !prev);
@@ -66,8 +61,8 @@ export default function ShoppingBag() {
         transition={{ duration: 0.1 }}
         onClick={handleButtonClick}
       />
-      <ShoppingBagContainer>
-        <ShoppingBagButton
+      <CartContainer>
+        <CartButton
           as={motion.button}
           animate={controls}
           transition={{
@@ -95,10 +90,10 @@ export default function ShoppingBag() {
             ></path>
           </svg>
           {cartCount > 0 && <span className="count">{cartCount}</span>}
-        </ShoppingBagButton>
+        </CartButton>
 
         {isPopupVisible && (
-          <ShoppingBagPopup>
+          <CartPopup>
             <Link
               onClick={handleCheckoutClick}
               to={"/checkout"}
@@ -107,14 +102,14 @@ export default function ShoppingBag() {
               Go to Checkout
             </Link>
             <h3>Your Cart</h3>
-            {bagItems.length === 0 && <p>Your cart is empty</p>}
-            {bagItems.map((item) => (
-              <ShoppingBagItem key={item.id} item={item} />
+            {cartItems.length === 0 && <p>Your cart is empty</p>}
+            {cartItems.map((item) => (
+              <CartItem key={item.id} item={item} />
             ))}
             <div className="total">Total: {total.toFixed(2)}</div>
-          </ShoppingBagPopup>
+          </CartPopup>
         )}
-      </ShoppingBagContainer>
+      </CartContainer>
     </>
   );
 }
