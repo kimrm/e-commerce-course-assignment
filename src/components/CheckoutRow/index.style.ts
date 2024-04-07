@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../config/theme";
 
 export const Container = styled.div`
   display: grid;
@@ -53,6 +54,18 @@ export const Container = styled.div`
   }
   #remove {
     grid-area: remove;
+    display: inline-block;
+    width: fit-content;
+    background: #444;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      background-color: #000;
+      color: ${colors.button.danger};
+    }
   }
   img {
     width: 100%;

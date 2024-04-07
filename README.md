@@ -1,14 +1,13 @@
-# Shop-a-lot
+# Shopalot
 
-Web app made for a frontend developer course.
-
-This project is work in progress.
+E-commerce web app made for a frontend developer course assignment.
 
 ### Stack
 
 - Vite
 - React
 - TypeScript
+- Styled Components
 
 ### Packages
 
@@ -18,3 +17,9 @@ This project is work in progress.
 - Framer Motion
 - React Hook Form
 - Yup
+
+### Project setup
+
+- Clone or fork the repository
+- Run `npm install` in the terminal.
+- `npm run dev` to start.

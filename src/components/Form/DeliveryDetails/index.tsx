@@ -15,7 +15,13 @@ import ScrollToTop from "../../ScrollToTop";
 const schema = yup
   .object({
     name: yup.string().required("Please enter your name.").min(3),
-    email: yup.string().email().required("Please provide a valid e-mail."),
+    email: yup
+      .string()
+      .matches(
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        "Please provide a valid e-mail address."
+      )
+      .required("Please provide a valid e-mail."),
     address: yup.string().required("Please enter your address.").min(3),
     city: yup.string().required("Please enter your city.").min(3),
     zip: yup.string().required("Please enter your zip code.").min(3),
@@ -105,6 +111,30 @@ export default function DeliveryDetails(props: Props) {
           </FormField>
           <FormField>
             <LabelField>
+              <label htmlFor="phone">Phone</label>
+            </LabelField>
+            <input title="Phone" {...register("phone", { required: true })} />
+            {errors.phone && (
+              <ValidationLabel
+                as={motion.span}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  type: "spring",
+                  damping: 10,
+                  stiffness: 1000,
+                  duration: 0.1,
+                }}
+              >
+                {errors.phone?.message}
+              </ValidationLabel>
+            )}
+          </FormField>
+          <FormField>
+            <LabelField>
               <label htmlFor="subject">Address</label>
             </LabelField>
             <input
@@ -181,30 +211,6 @@ export default function DeliveryDetails(props: Props) {
               )}
             </FormField>
           </FormGroup>
-          <FormField>
-            <LabelField>
-              <label htmlFor="phone">Phone</label>
-            </LabelField>
-            <input title="Phone" {...register("phone", { required: true })} />
-            {errors.phone && (
-              <ValidationLabel
-                as={motion.span}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  type: "spring",
-                  damping: 10,
-                  stiffness: 1000,
-                  duration: 0.1,
-                }}
-              >
-                {errors.phone?.message}
-              </ValidationLabel>
-            )}
-          </FormField>
           <SubmitButton>Complete order</SubmitButton>
         </motion.form>
       </DeliveryContainer>

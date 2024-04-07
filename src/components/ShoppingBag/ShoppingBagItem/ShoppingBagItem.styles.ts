@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { colors } from "../../../config/theme";
 
 export const ShoppingBagItemContainer = styled.div`
   display: grid;
@@ -32,6 +33,7 @@ export const ShoppingBagItemContainer = styled.div`
     border: none;
     padding: 0.5rem;
     border-radius: 5px;
+    font-size: 1rem;
   }
   @media (max-width: 500px) {
     grid-template-columns: repeat(2, 1fr);
@@ -63,7 +65,7 @@ export const RemoveButton = styled.button`
   width: 2rem;
   height: 2rem;
   &:hover {
-    background-color: #ccc;
-    color: red;
+    background-color: #000;
+    color: ${colors.danger};
   }
 `;

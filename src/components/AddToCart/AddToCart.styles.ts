@@ -12,6 +12,9 @@ const AddToCartButton = styled.button`
   background-color: ${colors.button.primary};
   color: #000;
   border: ${colors.gray} solid 1px;
+  &:disabled {
+    cursor: not-allowed;
+  }
   height: 2.5rem;
   font-size: 0.8rem;
   font-weight: bold;

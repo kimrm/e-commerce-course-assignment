@@ -51,6 +51,8 @@ export const ShoppingBagPopup = styled.div`
 `;
 
 export const ShoppingBagButton = styled.button`
+  --count-background-color: #fff;
+  --count-color: ${colors.infoDark};
   position: relative;
   display: flex;
   gap: 0.5rem;
@@ -59,17 +61,20 @@ export const ShoppingBagButton = styled.button`
   background-color: transparent;
   color: #fff;
   margin-inline-end: 1rem;
+  &:hover {
+    --count-background-color: ${colors.lightGreen};
+    --count-color: #222;
+  }
   & .count {
     position: absolute;
     top: -0.5rem;
     right: -1rem;
     font-size: 1rem;
     font-weight: bold;
-    background-color: #fff;
-    border: 1px solid ${colors.info};
+    background-color: var(--count-background-color);
     padding: 0.2em 0.5em;
     border-radius: 100%;
-    color: ${colors.infoDark};
+    color: var(--count-color);
   }
 `;
 

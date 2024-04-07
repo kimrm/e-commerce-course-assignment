@@ -35,6 +35,7 @@ const NextButton = styled.button`
   border: none;
   border-radius: 15px;
   cursor: pointer;
+  margin-block: 1rem;
   &:hover {
     background-color: ${colors.button.light};
   }
@@ -144,11 +145,9 @@ export default function CheckoutPage() {
         </span>{" "}
         ${total.toFixed(2)}
       </div>
-      <div>
-        <NextButton onClick={goToDeliveryDetails}>
-          Go to delivery details
-        </NextButton>
-      </div>
+      <NextButton onClick={goToDeliveryDetails}>
+        Go to delivery details
+      </NextButton>
     </div>
   );
 }

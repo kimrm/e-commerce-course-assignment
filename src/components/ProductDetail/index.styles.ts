@@ -24,9 +24,25 @@ export const ProductDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 2rem;
-  background-color: #444;
-  border-radius: 5px;
+  & .ProductInfo {
+    background-color: #333;
+    color: #ccc;
+    border-radius: 5px;
+    padding: 1rem;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        margin-block: 1rem;
+      }
+    }
+  }
+  h3 {
+    margin-top: 2rem;
+    color: #ccc;
+    font-size: 0.9rem;
+  }
 `;
 
 export const ReviewsContainer = styled.div`

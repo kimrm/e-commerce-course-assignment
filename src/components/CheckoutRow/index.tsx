@@ -83,16 +83,6 @@ export default function CheckoutRow({
         id="remove"
         onClick={handleRemoveItemClick}
         aria-label="Remove item from shopping bag"
-        style={{
-          display: "inline-block",
-          width: "fit-content",
-          backgroundColor: "#444",
-          color: "white",
-          padding: "0.5rem",
-          borderRadius: 5,
-          border: "none",
-          cursor: "pointer",
-        }}
       >
         <svg
           fill="none"

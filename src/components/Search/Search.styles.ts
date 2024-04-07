@@ -62,7 +62,6 @@ export const SearchResultsContainer = styled.div`
   overflow: hidden;
   width: 100%;
   position: absolute;
-
   top: 6rem;
   left: 0;
 `;
@@ -80,6 +79,32 @@ export const SearchResult = styled.div`
     list-style: none;
     padding: 0;
     margin: 0;
+  }
+  & .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block: 1rem;
+    & button {
+      background-color: transparent;
+      outline: none;
+      border: none;
+      border-radius: 15px;
+      align-items: center;
+      cursor: pointer;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      &:hover {
+        background-color: ${colors.darkGray};
+      }
+      svg {
+        width: 1.2rem;
+        height: 1.5rem;
+      }
+    }
   }
 `;
 

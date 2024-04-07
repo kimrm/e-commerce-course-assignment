@@ -30,9 +30,6 @@ export const LogoLink = styled(Link)`
   font-weight: bold;
   text-decoration: none;
   color: white;
-  &:hover {
-    color: #61dafb;
-  }
   @media (max-width: 500px) {
     font-size: 0.9rem;
   }

@@ -56,6 +56,10 @@ export const Card = styled.div`
 export const CardLink = styled(Link)`
   color: #ccc;
   text-decoration: none;
+  h1 {
+    font-size: 1.2rem;
+    margin-block: 0.5rem;
+  }
   &:hover {
     text-decoration: underline;
     color: #fff;

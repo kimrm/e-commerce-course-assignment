@@ -11,7 +11,7 @@ import AddToCart from "../AddToCart";
 import { motion } from "framer-motion";
 import useReviews from "../../hooks/useReviews";
 import { ProductsContext } from "../../contexts/ProductsContext";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import Image from "../Image";
 import ProductReviewStars from "../ProductReviewStars";
 import PriceTag from "../PriceTag";
@@ -25,14 +25,25 @@ export default function ProductCard(props: IProductCardProps) {
   const { products } = useContext(ProductsContext) || {};
   const { product, handleAddToCart } = props;
   const { averageRating } = useReviews(product.id, products || []);
+  const [notify, setNotify] = useState(false);
 
   const handleItemAdded = (quantity: number) => {
     handleAddToCart(product, quantity);
+    setNotify(true);
   };
+
+  useEffect(() => {
+    if (notify) {
+      const timer = setTimeout(() => {
+        setNotify(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [notify]);
 
   return (
     <Card
-      as={motion.div}
+      as={motion.article}
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
     >
@@ -40,7 +51,7 @@ export default function ProductCard(props: IProductCardProps) {
         <Image src={product.image.url} alt={product.title} />
       </Link>
       <CardLink to={`/product/${product.id}`}>
-        <h2>{product.title}</h2>
+        <h1>{product.title}</h1>
       </CardLink>
       <PriceTag price={product.price} discount={product.discountedPrice} />
       <Description>
@@ -61,7 +72,7 @@ export default function ProductCard(props: IProductCardProps) {
           <NoReviews>No reviews yet</NoReviews>
         )}
       </Reviews>
-      <AddToCart itemAdded={handleItemAdded} />
+      <AddToCart itemAdded={handleItemAdded} displayNotification={notify} />
     </Card>
   );
 }

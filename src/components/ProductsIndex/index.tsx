@@ -6,8 +6,6 @@ import { ProductsList } from "./ProductsIndex.styles";
 import { ProductsContext } from "../../contexts/ProductsContext";
 import { Status } from "../../types/ContextTypes";
 import ProductCard from "../ProductCard";
-import Modal from "../Modal";
-import Image from "../Image";
 import Tags from "../Tags";
 
 interface Props {
@@ -20,8 +18,6 @@ export default function ProductsIndex({ tag }: Props) {
     products ?? []
   );
   const [displayLoader, setDisplayLoader] = useState<boolean>(false);
-  const [newCartItem, setNewCartItem] = useState<IShoppingBagItem | null>(null);
-  const [cartModalOpen, setCartModalOpen] = useState<boolean>(false);
 
   const addItemToBag = useStore((state) => state.addItemToBag);
 
@@ -62,8 +58,6 @@ export default function ProductsIndex({ tag }: Props) {
       productImage: product.image?.url,
     };
     addItemToBag(item);
-    setNewCartItem(item);
-    setCartModalOpen(true);
   }
   if (displayLoader) {
     return <div>Fetching our products catalogue. Please hold on...</div>;
@@ -71,28 +65,6 @@ export default function ProductsIndex({ tag }: Props) {
 
   return (
     <div>
-      {cartModalOpen && (
-        <Modal onClose={() => setCartModalOpen(false)}>
-          <h2>{newCartItem?.name}</h2>
-          <h3>Has been added to your cart</h3>
-          <Image
-            src={newCartItem?.productImage || ""}
-            alt={newCartItem?.name || ""}
-            height="100px"
-          />
-          <section>
-            <p>Amount: {newCartItem?.quantity}</p>
-            <p>Total: {newCartItem?.price}</p>
-          </section>
-          <button className="primary" onClick={() => setCartModalOpen(false)}>
-            Continue shopping
-          </button>
-          <button role="button" className="secondary">
-            Go to cart
-          </button>
-        </Modal>
-      )}
-
       {tags && <Tags tags={tags} selectedTag={tag} />}
 
       <ProductsList>

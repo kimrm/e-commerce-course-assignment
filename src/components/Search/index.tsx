@@ -84,6 +84,10 @@ export default function Search() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  function handleCloseClick() {
+    setSearchText("");
+  }
+
   return (
     <>
       <BackDrop
@@ -126,7 +130,24 @@ export default function Search() {
           transition={{ duration: 0.3 }}
         >
           <SearchResult>
-            <p>{searchResults.length} results found</p>
+            <div className="header">
+              {searchResults.length} results found
+              <button onClick={handleCloseClick}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={4}
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18 18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
             <ul>
               {searchResults.map((product) => (
                 <SearchResultItem

@@ -14,7 +14,10 @@ const schema = yup
     name: yup.string().required("Please enter your name.").min(3),
     email: yup
       .string()
-      .email()
+      .matches(
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        "Please provide a valid e-mail address."
+      )
       .required("Please provide a valid e-mail address."),
     subject: yup.string().required("Please enter a subject.").min(3),
     message: yup.string().required("Please enter a message.").min(3),

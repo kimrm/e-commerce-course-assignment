@@ -1,17 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AddToCartButton,
   AddToCartInput,
   AddToCartContainer,
 } from "./AddToCart.styles";
+import { motion, useAnimation } from "framer-motion";
+import { colors } from "../../config/theme";
+
+const buttonVariants = {
+  initial: { backgroundColor: colors.button.primary, scale: 1 },
+  hover: { backgroundColor: colors.button.light },
+  notification: {
+    backgroundColor: colors.button.warning,
+    transition: {
+      duration: 0.5,
+    },
+  },
+  disabledHover: {},
+};
 
 interface AddToCartProps {
   itemAdded: (quantity: number) => void;
+  displayNotification?: boolean;
 }
 
 export default function AddToCart(props: AddToCartProps) {
-  const { itemAdded } = props;
+  const { itemAdded, displayNotification } = props;
   const [quantity, setQuantity] = useState("1");
+  const animationControls = useAnimation();
+
+  useEffect(() => {
+    if (displayNotification) {
+      animationControls.start("notification");
+    } else {
+      animationControls.start("initial");
+    }
+  }, [displayNotification]);
   return (
     <AddToCartContainer>
       <AddToCartInput
@@ -25,12 +49,18 @@ export default function AddToCart(props: AddToCartProps) {
         onChange={(e) => setQuantity(e.target.value)}
       />
       <AddToCartButton
+        as={motion.button}
+        disabled={displayNotification}
+        variants={buttonVariants}
+        initial="initial"
+        whileHover={displayNotification ? "disabledHover" : "hover"}
+        animate={animationControls}
         onClick={() => {
           itemAdded(isNaN(parseInt(quantity)) ? 1 : parseInt(quantity));
         }}
         title="Add to cart"
       >
-        Add to cart
+        {displayNotification ? "Item added" : "Add to cart"}
       </AddToCartButton>
     </AddToCartContainer>
   );
