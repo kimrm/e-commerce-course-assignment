@@ -7,7 +7,6 @@ import { colors } from "../../config/theme";
 import useCartTotal from "../../hooks/useCartTotal";
 import CheckoutRow from "../../components/CheckoutRow";
 import DeliveryDetails from "../../components/Form/DeliveryDetails";
-import ScrollToTop from "../../components/ScrollToTop";
 
 const List = styled.ul`
   list-style: none;
@@ -43,30 +42,27 @@ const NextButton = styled.button`
 
 function CheckOutSuccessPage() {
   return (
-    <>
-      <ScrollToTop />
-      <div>
-        <h1>Order placed successfully</h1>
-        <p>Thank you for shopping with us.</p>
-        <p>
-          Your order is processed and we will contact you shortly to confirm the
-          order and delivery details.
-        </p>
-        <h2>Next steps</h2>
-        <List>
-          <ListItem>
-            <LinkStyled as={Link} to="/">
-              Continue shopping
-            </LinkStyled>
-          </ListItem>
-          <ListItem>
-            <LinkStyled as={Link} to="/contact">
-              Contact us for questions about your order
-            </LinkStyled>
-          </ListItem>
-        </List>
-      </div>
-    </>
+    <div>
+      <h1>Order placed successfully</h1>
+      <p>Thank you for shopping with us.</p>
+      <p>
+        Your order is processed and we will contact you shortly to confirm the
+        order and delivery details.
+      </p>
+      <h2>Next steps</h2>
+      <List>
+        <ListItem>
+          <LinkStyled as={Link} to="/">
+            Continue shopping
+          </LinkStyled>
+        </ListItem>
+        <ListItem>
+          <LinkStyled as={Link} to="/contact">
+            Contact us for questions about your order
+          </LinkStyled>
+        </ListItem>
+      </List>
+    </div>
   );
 }
 
@@ -106,7 +102,6 @@ export default function CheckoutPage() {
 
   return (
     <div>
-      <ScrollToTop />
       <h1>Cart checkout</h1>
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import Contact from "../../components/Form/Contact";
 import Modal from "../../components/Modal";
 import { ContactFormContainer } from "./ContactPage.styles";
-import ScrollToTop from "../../components/ScrollToTop";
 
 export default function ContactPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,7 +12,6 @@ export default function ContactPage() {
 
   return (
     <>
-      <ScrollToTop />
       <div>
         {isModalOpen && (
           <Modal onClose={() => setIsModalOpen(false)}>

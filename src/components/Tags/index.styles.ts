@@ -64,7 +64,7 @@ export const ProductTags = styled.div`
         background-color: #444;
       }
       &.active {
-        background-color: #444;
+        background-color: #000;
       }
       a {
         display: block;
