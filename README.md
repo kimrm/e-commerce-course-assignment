@@ -2,7 +2,7 @@
 
 ![Screenshot](https://kimrm.github.io/e-commerce-course-assignment/images/screenshot.png)
 
-A fictive e-commerce web app made for a frontend developer course assignment.
+A fictive e-commerce web app made for a React course assignment.
 
 ## Stack
 
